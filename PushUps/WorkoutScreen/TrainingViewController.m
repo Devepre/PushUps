@@ -50,6 +50,7 @@
 #pragma mark - Additional Methods
 
 - (void)sensorStateChange:(NSNotificationCenter *)notification {
+    NSLog(@"%s", __func__);
     if ([UIDevice.currentDevice proximityState] == YES) {
         self.timeInterval = [self.timeShot timeIntervalSinceNow];
         printf("%f\n", self.timeInterval);

@@ -125,7 +125,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Current Week level" id="Ewl-N8-8Mu">
+                            <tableViewSection headerTitle="Current Session Completion" id="Ewl-N8-8Mu">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3UJ-Vz-hAT">
                                         <rect key="frame" x="0.0" y="232" width="414" height="44"/>
@@ -519,6 +519,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="gcy-jg-mqx"/>
         <segue reference="XVo-yE-9BA"/>
     </inferredMetricsTieBreakers>
 </document>
