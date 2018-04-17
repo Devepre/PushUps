@@ -1,7 +1,13 @@
 #import "TrainingViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
+#define top_inset 20.0
+#define cheatSeconds 1.14
+
 @interface TrainingViewController ()
+
+@property (strong, nonatomic) NSDate            *timeShot;
+@property (assign, nonatomic) NSTimeInterval    timeInterval;
 
 @end
 
@@ -12,7 +18,8 @@
     
     NSLog(@"%s", __func__);
     
-    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(top_inset, 0, 0, 0);
+    self.timeShot = [NSDate dateWithTimeIntervalSince1970:0];
     
     UIDevice.currentDevice.proximityMonitoringEnabled = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -44,11 +51,20 @@
 
 - (void)sensorStateChange:(NSNotificationCenter *)notification {
     if ([UIDevice.currentDevice proximityState] == YES) {
-        [self countDown];
+        self.timeInterval = [self.timeShot timeIntervalSinceNow];
+        printf("%f\n", self.timeInterval);
+    } else {
+        if (ABS(self.timeInterval) > cheatSeconds) {
+            self.timeShot = [NSDate date];
+            [self countDown];
+        } else {
+            NSLog(@"Cheater detected! Time interval is %f", ABS(self.timeInterval));
+        }
     }
 }
 
 - (void)countDown {
+    NSLog(@"%s", __func__);
     NSInteger integerValue = [self.countLabel.text integerValue];
     --integerValue;
     self.countLabel.text = [NSString stringWithFormat:@"%d", integerValue];
