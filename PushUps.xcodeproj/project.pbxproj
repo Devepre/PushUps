@@ -16,6 +16,7 @@
 		CE24FA5F2084F65D00382ED0 /* WorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA5E2084F65D00382ED0 /* WorkoutViewController.m */; };
 		CE24FA622085EDB800382ED0 /* TrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA612085EDB800382ED0 /* TrainingViewController.m */; };
 		CE24FA69208643F200382ED0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA68208643F200382ED0 /* SettingsViewController.m */; };
+		CE24FA6D2086467800382ED0 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA6C2086467800382ED0 /* DataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		CE24FA612085EDB800382ED0 /* TrainingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrainingViewController.m; sourceTree = "<group>"; };
 		CE24FA67208643F200382ED0 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		CE24FA68208643F200382ED0 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		CE24FA6B2086467800382ED0 /* DataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
+		CE24FA6C2086467800382ED0 /* DataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,7 @@
 			children = (
 				CE24FA432084EB1500382ED0 /* AppDelegate.h */,
 				CE24FA442084EB1500382ED0 /* AppDelegate.m */,
+				CE24FA6A2086465300382ED0 /* AdditionalClasses */,
 				CE24FA66208643CF00382ED0 /* SettingsScreen */,
 				CE24FA5C2084F64200382ED0 /* WorkoutScreen */,
 				CE24FA492084EB1500382ED0 /* Main.storyboard */,
@@ -98,6 +102,15 @@
 				CE24FA68208643F200382ED0 /* SettingsViewController.m */,
 			);
 			path = SettingsScreen;
+			sourceTree = "<group>";
+		};
+		CE24FA6A2086465300382ED0 /* AdditionalClasses */ = {
+			isa = PBXGroup;
+			children = (
+				CE24FA6B2086467800382ED0 /* DataController.h */,
+				CE24FA6C2086467800382ED0 /* DataController.m */,
+			);
+			path = AdditionalClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +187,7 @@
 				CE24FA4E2084EB1500382ED0 /* PushUps.xcdatamodeld in Sources */,
 				CE24FA562084EB1600382ED0 /* main.m in Sources */,
 				CE24FA69208643F200382ED0 /* SettingsViewController.m in Sources */,
+				CE24FA6D2086467800382ED0 /* DataController.m in Sources */,
 				CE24FA622085EDB800382ED0 /* TrainingViewController.m in Sources */,
 				CE24FA452084EB1500382ED0 /* AppDelegate.m in Sources */,
 			);
