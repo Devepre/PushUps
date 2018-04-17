@@ -9,5 +9,6 @@
 
 - (NSManagedObjectContext *)managedObjectContext;
 - (void)saveContext;
+- (void)deleteStore;
 
 @end
