@@ -68,7 +68,7 @@
     NSLog(@"%s", __func__);
     NSInteger integerValue = [self.countLabel.text integerValue];
     --integerValue;
-    self.countLabel.text = [NSString stringWithFormat:@"%d", integerValue];
+    self.countLabel.text = [NSString stringWithFormat:@"%ld", (long)integerValue];
 }
 
 - (void)unsubscribeFromProximity {

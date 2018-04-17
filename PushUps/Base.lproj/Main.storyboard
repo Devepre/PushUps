@@ -510,14 +510,34 @@
                                                     <rect key="frame" x="145" y="6" width="124" height="30"/>
                                                     <state key="normal" title="Create Default DB"/>
                                                     <connections>
-                                                        <action selector="createDefaultDBAction:" destination="w19-se-9qQ" eventType="touchUpInside" id="eUZ-ns-wTj"/>
-                                                        <action selector="createDefaultDBButton:" destination="w19-se-9qQ" eventType="touchUpInside" id="Qqq-Bg-VGX"/>
+                                                        <action selector="createDefaultDBAction:" destination="w19-se-9qQ" eventType="touchUpInside" id="UEx-74-Tng"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="N8F-PR-KkI" firstAttribute="centerX" secondItem="oSs-yb-Vdb" secondAttribute="centerX" id="RTj-Jj-xIJ"/>
                                                 <constraint firstItem="N8F-PR-KkI" firstAttribute="centerY" secondItem="oSs-yb-Vdb" secondAttribute="centerY" id="dwt-rQ-nSp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WJ7-n3-fRb">
+                                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WJ7-n3-fRb" id="Ugh-cP-kli">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1c-jg-WOX">
+                                                    <rect key="frame" x="172.66666666666666" y="6" width="69" height="30"/>
+                                                    <state key="normal" title="Delete DB"/>
+                                                    <connections>
+                                                        <action selector="deleteDBAction:" destination="w19-se-9qQ" eventType="touchUpInside" id="MnD-nn-js0"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="g1c-jg-WOX" firstAttribute="centerY" secondItem="Ugh-cP-kli" secondAttribute="centerY" id="Xj3-rx-skg"/>
+                                                <constraint firstItem="g1c-jg-WOX" firstAttribute="centerX" secondItem="Ugh-cP-kli" secondAttribute="centerX" id="u4O-x9-Giu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
