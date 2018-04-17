@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -236,8 +237,8 @@
                                                     <state key="normal" title="Start Training"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mab-YZ-2mB">
-                                                    <rect key="frame" x="292" y="6" width="72" height="30"/>
-                                                    <state key="normal" title="Record try"/>
+                                                    <rect key="frame" x="243" y="6" width="121" height="30"/>
+                                                    <state key="normal" title="Max push-ups try"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -261,7 +262,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="31a-vc-01W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="113" y="-754"/>
+            <point key="canvasLocation" x="319" y="-758"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="V1r-Sv-E8g">
@@ -275,6 +276,7 @@
                     <connections>
                         <segue destination="LaX-Hh-UCM" kind="relationship" relationship="viewControllers" id="XWZ-pW-Hhw"/>
                         <segue destination="qY6-Yu-g0g" kind="relationship" relationship="viewControllers" id="EoX-YS-bgz"/>
+                        <segue destination="5dE-xP-pHO" kind="relationship" relationship="viewControllers" id="Vhi-ad-YMZ"/>
                         <segue destination="w19-se-9qQ" kind="relationship" relationship="viewControllers" id="2zm-wR-jMV"/>
                     </connections>
                 </tabBarController>
@@ -322,7 +324,35 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQn-6E-cza" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="111" y="-56"/>
+            <point key="canvasLocation" x="320" y="-93"/>
+        </scene>
+        <!--Rules-->
+        <scene sceneID="h5A-tC-vIx">
+            <objects>
+                <viewController id="5dE-xP-pHO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nxa-FI-EP6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rules placeholder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqG-QB-STR">
+                                <rect key="frame" x="138.66666666666666" y="357.66666666666669" width="136.99999999999997" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FqG-QB-STR" firstAttribute="centerX" secondItem="Nxa-FI-EP6" secondAttribute="centerX" id="ZDH-ug-Jnt"/>
+                            <constraint firstItem="FqG-QB-STR" firstAttribute="centerY" secondItem="Nxa-FI-EP6" secondAttribute="centerY" id="oHv-uI-8d6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WXo-lz-BFH"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Rules" id="Qwg-wO-jSu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FZn-rG-U11" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1241" y="345"/>
         </scene>
         <!--Settings-->
         <scene sceneID="W6T-Xo-W0F">
@@ -351,7 +381,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dhl-Mf-Ehl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-839" y="339"/>
+            <point key="canvasLocation" x="-443" y="345"/>
         </scene>
     </scenes>
 </document>
