@@ -1,4 +1,3 @@
-#import <AVFoundation/AVFoundation.h>
 #import "WorkoutViewController.h"
 
 @interface WorkoutViewController ()
@@ -7,24 +6,12 @@
 
 @implementation WorkoutViewController
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIDeviceProximityStateDidChangeNotification
-                                                  object:nil];
-    
-    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    NSLog(@"%s", __func__);
     
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(sensorStateChange:)
-                                                 name:UIDeviceProximityStateDidChangeNotification
-                                               object:nil];
+    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -54,19 +41,5 @@
 
 #pragma mark - Additional Methods
 
-- (void)sensorStateChange:(NSNotificationCenter *)notification {
-    if ([UIDevice.currentDevice proximityState] == YES) {
-        NSLog(@"Close");
-        
-        AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        if (device.hasTorch) {
-            [device lockForConfiguration:nil];
-            device.torchMode = device.torchMode ? AVCaptureTorchModeOff : AVCaptureTorchModeOn;
-            [device unlockForConfiguration];
-        }
-    } else {
-        NSLog(@"Not close");
-    }
-}
 
 @end

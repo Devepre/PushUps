@@ -14,6 +14,7 @@
 		CE24FA532084EB1600382ED0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE24FA512084EB1600382ED0 /* LaunchScreen.storyboard */; };
 		CE24FA562084EB1600382ED0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA552084EB1600382ED0 /* main.m */; };
 		CE24FA5F2084F65D00382ED0 /* WorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA5E2084F65D00382ED0 /* WorkoutViewController.m */; };
+		CE24FA622085EDB800382ED0 /* TrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA612085EDB800382ED0 /* TrainingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		CE24FA552084EB1600382ED0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CE24FA5D2084F65D00382ED0 /* WorkoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutViewController.h; sourceTree = "<group>"; };
 		CE24FA5E2084F65D00382ED0 /* WorkoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutViewController.m; sourceTree = "<group>"; };
+		CE24FA602085EDB800382ED0 /* TrainingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrainingViewController.h; sourceTree = "<group>"; };
+		CE24FA612085EDB800382ED0 /* TrainingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrainingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,8 @@
 		CE24FA5C2084F64200382ED0 /* WorkoutScreen */ = {
 			isa = PBXGroup;
 			children = (
+				CE24FA602085EDB800382ED0 /* TrainingViewController.h */,
+				CE24FA612085EDB800382ED0 /* TrainingViewController.m */,
 				CE24FA5D2084F65D00382ED0 /* WorkoutViewController.h */,
 				CE24FA5E2084F65D00382ED0 /* WorkoutViewController.m */,
 			);
@@ -155,6 +160,7 @@
 				CE24FA5F2084F65D00382ED0 /* WorkoutViewController.m in Sources */,
 				CE24FA4E2084EB1500382ED0 /* PushUps.xcdatamodeld in Sources */,
 				CE24FA562084EB1600382ED0 /* main.m in Sources */,
+				CE24FA622085EDB800382ED0 /* TrainingViewController.m in Sources */,
 				CE24FA452084EB1500382ED0 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
