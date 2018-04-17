@@ -2,4 +2,6 @@
 
 @interface TrainingViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
+
 @end

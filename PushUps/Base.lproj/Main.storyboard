@@ -335,13 +335,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="299.66666666666669"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hbu-sJ-QmP">
-                                                    <rect key="frame" x="179.66666666666666" y="102" width="56" height="95.666666666666686"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hbu-sJ-QmP">
+                                                    <rect key="frame" x="183.66666666666666" y="102" width="48" height="95.666666666666686"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="80"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Left" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGe-f5-MCy">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGe-f5-MCy">
                                                     <rect key="frame" x="192" y="207.66666666666666" width="30" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -390,6 +390,9 @@
                             <outlet property="delegate" destination="QqB-Yx-c7x" id="Zav-x3-StF"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="countLabel" destination="Hbu-sJ-QmP" id="2Ai-Qg-b2N"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y0d-ae-mnR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -516,7 +519,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gcy-jg-mqx"/>
         <segue reference="XVo-yE-9BA"/>
     </inferredMetricsTieBreakers>
 </document>

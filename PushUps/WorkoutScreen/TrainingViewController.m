@@ -44,8 +44,14 @@
 
 - (void)sensorStateChange:(NSNotificationCenter *)notification {
     if ([UIDevice.currentDevice proximityState] == YES) {
-        ;
+        [self countDown];
     }
+}
+
+- (void)countDown {
+    NSInteger integerValue = [self.countLabel.text integerValue];
+    --integerValue;
+    self.countLabel.text = [NSString stringWithFormat:@"%d", integerValue];
 }
 
 - (void)unsubscribeFromProximity {
