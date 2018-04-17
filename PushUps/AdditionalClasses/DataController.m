@@ -52,9 +52,10 @@
     NSPersistentStoreCoordinator *storeCoordinator = self.persistentContainer.persistentStoreCoordinator;
     NSPersistentStore *store = [storeCoordinator.persistentStores firstObject];
     NSError *error;
-    NSURL *storeURL = store.URL;
-    [storeCoordinator removePersistentStore:store error:&error];
-    [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error];
+    [storeCoordinator destroyPersistentStoreAtURL:store.URL
+                                         withType:NSSQLiteStoreType
+                                          options:nil
+                                            error:&error];
 }
 
 @end
