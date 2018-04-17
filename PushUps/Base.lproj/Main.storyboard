@@ -486,26 +486,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FZn-rG-U11" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1241" y="345"/>
+            <point key="canvasLocation" x="-1245" y="525"/>
         </scene>
         <!--Settings-->
         <scene sceneID="W6T-Xo-W0F">
             <objects>
-                <tableViewController id="w19-se-9qQ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TUC-aQ-YNe">
+                <tableViewController id="w19-se-9qQ" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TUC-aQ-YNe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Fcm-UB-vQe">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fcm-UB-vQe" id="oSs-yb-Vdb">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <sections>
+                            <tableViewSection id="VPU-IN-OKv">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Fcm-UB-vQe">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fcm-UB-vQe" id="oSs-yb-Vdb">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8F-PR-KkI">
+                                                    <rect key="frame" x="145" y="6" width="124" height="30"/>
+                                                    <state key="normal" title="Create Default DB"/>
+                                                    <connections>
+                                                        <action selector="createDefaultDBAction:" destination="w19-se-9qQ" eventType="touchUpInside" id="eUZ-ns-wTj"/>
+                                                        <action selector="createDefaultDBButton:" destination="w19-se-9qQ" eventType="touchUpInside" id="Qqq-Bg-VGX"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="N8F-PR-KkI" firstAttribute="centerX" secondItem="oSs-yb-Vdb" secondAttribute="centerX" id="RTj-Jj-xIJ"/>
+                                                <constraint firstItem="N8F-PR-KkI" firstAttribute="centerY" secondItem="oSs-yb-Vdb" secondAttribute="centerY" id="dwt-rQ-nSp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="w19-se-9qQ" id="N1Q-ti-Xty"/>
                             <outlet property="delegate" destination="w19-se-9qQ" id="bss-CC-Hbe"/>
@@ -515,11 +533,10 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dhl-Mf-Ehl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-443" y="345"/>
+            <point key="canvasLocation" x="-442" y="525"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gcy-jg-mqx"/>
-        <segue reference="XVo-yE-9BA"/>
+        <segue reference="XWZ-pW-Hhw"/>
     </inferredMetricsTieBreakers>
 </document>
