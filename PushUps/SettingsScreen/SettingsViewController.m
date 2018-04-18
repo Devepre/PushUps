@@ -41,40 +41,77 @@
 #pragma mark - Additional Methods
 
 - (void)createDefaultDB {
-    [self createSessionWithTitle:@"0-5 push-ups" andMinValue:0 andMaxValue:5];
-    [self createSessionWithTitle:@"6-10 push-ups" andMinValue:6 andMaxValue:10];
-    [self createSessionWithTitle:@"11-20 push-ups" andMinValue:11 andMaxValue:20];
-    [self createSessionWithTitle:@"21-25 push-ups" andMinValue:21 andMaxValue:25];
-    [self createSessionWithTitle:@"26-30 push-ups" andMinValue:26 andMaxValue:30];
-    [self createSessionWithTitle:@"31-35 push-ups" andMinValue:31 andMaxValue:35];
-    [self createSessionWithTitle:@"36-40 push-ups" andMinValue:36 andMaxValue:40];
-    [self createSessionWithTitle:@"41-45 push-ups" andMinValue:41 andMaxValue:45];
-    [self createSessionWithTitle:@"46-50 push-ups" andMinValue:46 andMaxValue:50];
-    [self createSessionWithTitle:@"51-55 push-ups" andMinValue:51 andMaxValue:55];
-    [self createSessionWithTitle:@"56-60 push-ups" andMinValue:56 andMaxValue:60];
-    [self createSessionWithTitle:@"60-99 push-ups" andMinValue:60 andMaxValue:99];
+    SessionMO *sessionOne = [self createSessionWithTitle:@"0-5 push-ups" andMinValue:0 andMaxValue:5 andId:0];
+    NSArray *setCounts1 = @[@2, @3, @2, @2, @3];
+    NSArray *setCounts2 = @[@3, @4, @2, @3, @4];
+    NSArray *setCounts3 = @[@4, @5, @4, @4, @5];
+    NSArray *setCounts4 = @[@5, @6, @4, @4, @6];
+    NSArray *setCounts5 = @[@5, @6, @4, @4, @7];
+    NSArray *setCounts6 = @[@5, @7, @5, @5, @7];
+    NSArray *days = @[setCounts1, setCounts2, setCounts3, setCounts4, setCounts5, setCounts6];
+    NSArray *dayRelaxIntervalSeconds = @[@60, @90, @120, @60, @90, @120];
+    NSArray *dayBreakIntervalDays = @[@1, @1, @2, @1, @1, @2];
+    
+    sessionOne.daysArray = [self createDaysFromDaysArray:days
+                        withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
+                            andDayBreakIntervalDaysArray:dayBreakIntervalDays];
+    
+    [self saveManagedObjecContext];
 }
 
-- (void)createSessionWithTitle:(NSString *)title andMinValue:(int32_t)minValue andMaxValue:(int32_t)maxValue {
+- (SessionMO *)createSessionWithTitle:(NSString *)title andMinValue:(int32_t)minValue andMaxValue:(int32_t)maxValue andId:(int32_t)objectID {
+    SessionMO *newSession = nil;
     if ([self existSessionWithTitle:title]) {
         [self presentAlertErrorWithMessage:[NSString stringWithFormat:@"Session %@ already exist", title]];
     } else {
-        SessionMO *newManagedObject = [[SessionMO alloc] initWithContext:self.managedObjectContext];
-        newManagedObject.title = title;
-        newManagedObject.minValue = minValue;
-        newManagedObject.maxValue = maxValue;
-        
-        [self saveManagedObjecContext];
+        newSession = [[SessionMO alloc] initWithContext:self.managedObjectContext];
+        newSession.id = objectID;
+        newSession.title = title;
+        newSession.minValue = minValue;
+        newSession.maxValue = maxValue;
     }
+    
+    return newSession;
 }
 
-- (void)createDayForSession:(SessionMO *)session withBreakIntervalDays:(int32_t)breakIntervalDays andRelaxIntervalSeconds:(int32_t)relaxIntervalSeconds {
-    DayMO *newManagedObject = [[DayMO alloc] initWithContext:self.managedObjectContext];
-    newManagedObject.belongsToSession = session;
-    newManagedObject.breakIntervalDays = breakIntervalDays;
-    newManagedObject.relaxIntervalSeconds = relaxIntervalSeconds;
+- (NSSet *)createDaysFromDaysArray:(NSArray *)days withDayRelaxIntervalSecondsArray:(NSArray *)dayRelaxIntervalSeconds  andDayBreakIntervalDaysArray:(NSArray *)dayBreakIntervalDays {
+    NSMutableSet *daysForSession = [[NSMutableSet alloc] init];
+    for (int i = 0; i < days.count; i++) {
+        DayMO *currentDay = [self createDayWithRelaxIntervalSeconds:[[dayRelaxIntervalSeconds objectAtIndex:i] intValue]
+                                               andBreakIntervalDays:[[dayBreakIntervalDays objectAtIndex:i] intValue]
+                                                              andID:i];
+        currentDay.setArray = [self createSetsFromCountsArray:[days objectAtIndex:i]];
+        [daysForSession addObject:currentDay];
+    }
+    return [NSSet setWithSet:daysForSession];
+}
+
+- (DayMO *)createDayWithRelaxIntervalSeconds:(int32_t)relaxIntervalSeconds andBreakIntervalDays:(int32_t)breakIntervalDays andID:(int32_t)objectID {
+    DayMO *newDay = [[DayMO alloc] initWithContext:self.managedObjectContext];
+    newDay.id = objectID;
+    newDay.relaxIntervalSeconds = relaxIntervalSeconds;
+    newDay.breakIntervalDays = breakIntervalDays;
     
-    [self saveManagedObjecContext];
+    return newDay;
+}
+
+- (NSSet<SetMO *> *)createSetsFromCountsArray:(NSArray *)counts {
+    NSMutableSet *result = [[NSMutableSet alloc] init];
+    
+    for (int i = 0; i < counts.count; ++i) {
+        [result addObject:[self createSetWithCount:[[counts objectAtIndex:i] intValue] andId:i]];
+    }
+    
+    return [NSSet setWithSet:result];
+}
+
+- (SetMO *)createSetWithCount:(int32_t)count andId:(int32_t)objectID {
+    SetMO *newSet = [[SetMO alloc] initWithContext:self.managedObjectContext];
+    newSet.id = objectID;
+    newSet.completed = NO;
+    newSet.count = count;
+    
+    return newSet;
 }
 
 #pragma mark - Supplement methods
