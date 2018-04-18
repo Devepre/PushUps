@@ -41,7 +41,21 @@
 #pragma mark - Additional Methods
 
 - (void)createDefaultDB {
-    SessionMO *sessionOne = [self createSessionWithTitle:@"0-5 push-ups" andMinValue:0 andMaxValue:5 andId:0];
+    NSArray *sessionMinValues = @[@0, @6, @11, @21, @26, @31, @36, @41, @46, @51, @56, @61];
+    NSArray *sessionMaxValues = @[@5, @10, @20, @25, @30, @35, @406, @45, @50, @55, @60, @99];
+    
+    NSMutableArray *sessionsArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < sessionMaxValues.count; i++) {
+        SessionMO *currentSession = [self createSessionWithTitle:[NSString stringWithFormat:@"%@ - %@ push-ups",
+                                                                   [sessionMinValues objectAtIndex:i],
+                                                                   [sessionMaxValues objectAtIndex:i]]
+                                                      andMinValue:0
+                                                      andMaxValue:5
+                                                            andId:0];
+        [sessionsArray addObject:currentSession];
+    }
+    
+    SessionMO *session0 = [sessionsArray objectAtIndex:0];
     NSArray *setCounts1 = @[@2, @3, @2, @2, @3];
     NSArray *setCounts2 = @[@3, @4, @2, @3, @4];
     NSArray *setCounts3 = @[@4, @5, @4, @4, @5];
@@ -52,7 +66,7 @@
     NSArray *dayRelaxIntervalSeconds = @[@60, @90, @120, @60, @90, @120];
     NSArray *dayBreakIntervalDays = @[@1, @1, @2, @1, @1, @2];
     
-    sessionOne.daysArray = [self createDaysFromDaysArray:days
+    session0.daysArray = [self createDaysFromDaysArray:days
                         withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
                             andDayBreakIntervalDaysArray:dayBreakIntervalDays];
     
