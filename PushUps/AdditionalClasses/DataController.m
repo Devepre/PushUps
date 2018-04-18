@@ -56,6 +56,8 @@
                                          withType:NSSQLiteStoreType
                                           options:nil
                                             error:&error];
+    _persistentContainer = nil;
+    //ToDo: nillify Singleton correctly
 }
 
 @end
