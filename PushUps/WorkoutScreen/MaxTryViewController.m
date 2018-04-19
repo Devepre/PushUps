@@ -1,4 +1,6 @@
 #import "MaxTryViewController.h"
+#import "DataController.h"
+#import "PushUps+CoreDataModel.h"
 
 #define top_inset 20.0
 #define cheatSeconds 1.14
@@ -7,6 +9,7 @@
 
 @property (strong, nonatomic) NSDate            *timeShot;
 @property (assign, nonatomic) NSTimeInterval    timeInterval;
+@property (strong, nonatomic) NSManagedObjectContext    *managedObjectContext;
 
 @end
 
@@ -19,6 +22,13 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(top_inset, 0, 0, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.countLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(didTapLabelWithGesture:)];
+    [self.countLabel addGestureRecognizer:tapGesture];
+    
+    self.managedObjectContext = [DataController sharedInstance].managedObjectContext;
     
     self.timeShot = [NSDate dateWithTimeIntervalSince1970:0];
     
@@ -44,6 +54,16 @@
     NSLog(@"%s", __func__);
     [self unsubscribeFromProximity];
     
+    int32_t currentCount = [self.countLabel.text intValue];
+    [self updateCurrentMaxWithNewValue:currentCount];
+    
+    [self saveManagedObjecContext];
+}
+
+#pragma mark - Actions
+
+- (void)didTapLabelWithGesture:(UITapGestureRecognizer *)tapGesture {
+    [self countUp];
 }
 
 #pragma mark - Additional Methods
@@ -75,6 +95,42 @@
                                                     name:UIDeviceProximityStateDidChangeNotification
                                                   object:nil];
     UIDevice.currentDevice.proximityMonitoringEnabled = NO;
+}
+
+#pragma mark - Supplement methods
+
+- (BOOL)updateCurrentMaxWithNewValue:(int32_t)newMax {
+    BOOL result = NO;
+    AthleteMO *currentAthlete = [self getCurrentAthlete];
+    int32_t currentMax = currentAthlete.currentMax;
+    if (newMax > currentMax) {
+        currentAthlete.currentMax = newMax;
+        result = YES;
+    }
+    
+    return result;
+}
+
+- (AthleteMO *)getCurrentAthlete {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Athlete"];
+    
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if (!results) {
+        NSLog(@"Error fetching Athlete objects %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
+    }
+    AthleteMO *currentAthlete = [results firstObject];
+    
+    return currentAthlete;
+}
+
+- (void)saveManagedObjecContext {
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+        abort();
+    }
 }
 
 @end
