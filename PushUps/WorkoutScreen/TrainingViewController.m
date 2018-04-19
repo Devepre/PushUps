@@ -19,6 +19,8 @@
     NSLog(@"%s", __func__);
     
     self.tableView.contentInset = UIEdgeInsetsMake(top_inset, 0, 0, 0);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     self.timeShot = [NSDate dateWithTimeIntervalSince1970:0];
     
     UIDevice.currentDevice.proximityMonitoringEnabled = YES;
