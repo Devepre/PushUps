@@ -17,6 +17,7 @@
 		CE24FA622085EDB800382ED0 /* TrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA612085EDB800382ED0 /* TrainingViewController.m */; };
 		CE24FA69208643F200382ED0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA68208643F200382ED0 /* SettingsViewController.m */; };
 		CE24FA6D2086467800382ED0 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA6C2086467800382ED0 /* DataController.m */; };
+		CE89DFDD2088960D00C9ADDC /* MaxTryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE89DFDC2088960D00C9ADDC /* MaxTryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		CE24FA68208643F200382ED0 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		CE24FA6B2086467800382ED0 /* DataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
 		CE24FA6C2086467800382ED0 /* DataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
+		CE89DFDB2088960D00C9ADDC /* MaxTryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxTryViewController.h; sourceTree = "<group>"; };
+		CE89DFDC2088960D00C9ADDC /* MaxTryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaxTryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,8 @@
 		CE24FA5C2084F64200382ED0 /* WorkoutScreen */ = {
 			isa = PBXGroup;
 			children = (
+				CE89DFDB2088960D00C9ADDC /* MaxTryViewController.h */,
+				CE89DFDC2088960D00C9ADDC /* MaxTryViewController.m */,
 				CE24FA602085EDB800382ED0 /* TrainingViewController.h */,
 				CE24FA612085EDB800382ED0 /* TrainingViewController.m */,
 				CE24FA5D2084F65D00382ED0 /* WorkoutViewController.h */,
@@ -188,6 +193,7 @@
 				CE24FA562084EB1600382ED0 /* main.m in Sources */,
 				CE24FA69208643F200382ED0 /* SettingsViewController.m in Sources */,
 				CE24FA6D2086467800382ED0 /* DataController.m in Sources */,
+				CE89DFDD2088960D00C9ADDC /* MaxTryViewController.m in Sources */,
 				CE24FA622085EDB800382ED0 /* TrainingViewController.m in Sources */,
 				CE24FA452084EB1500382ED0 /* AppDelegate.m in Sources */,
 			);
