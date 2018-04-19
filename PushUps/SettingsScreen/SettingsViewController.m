@@ -41,6 +41,10 @@
 #pragma mark - Additional Methods
 
 - (void)createDefaultDB {
+    // Creating User
+    AthleteMO *athlete = [[AthleteMO alloc] initWithContext:self.managedObjectContext];
+    
+    // Creating Session->Day->Set
     NSArray *sessionMinValues = @[@0, @6, @11, @21, @26, @31, @36, @41, @46, @51, @56, @61];
     NSArray *sessionMaxValues = @[@5, @10, @20, @25, @30, @35, @406, @45, @50, @55, @60, @99];
     
