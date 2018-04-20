@@ -6,13 +6,14 @@
         <attribute name="estimatedFinishDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="maxPerSession" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="stillToDo" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="totalCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="completedSessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="completedByAthlete" inverseEntity="Session" syncable="YES"/>
         <relationship name="currentTrainingSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="currentlyForAthlete" inverseEntity="Session" syncable="YES"/>
     </entity>
     <entity name="Day" representedClassName="DayMO" syncable="YES" codeGenerationType="class">
         <attribute name="breakIntervalDays" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="numberOfSetsCompleted" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="relaxIntervalSeconds" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="belongsToSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="daysArray" inverseEntity="Session" syncable="YES"/>
         <relationship name="setArray" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Set" inverseName="belongsToDay" inverseEntity="Set" syncable="YES"/>
@@ -33,9 +34,9 @@
         <relationship name="belongsToDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="setArray" inverseEntity="Day" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Day" positionX="-470" positionY="63" width="128" height="118"/>
+        <element name="Athlete" positionX="-45" positionY="-98" width="162" height="163"/>
+        <element name="Day" positionX="-504" positionY="63" width="162" height="133"/>
         <element name="Session" positionX="-270" positionY="-68" width="128" height="148"/>
         <element name="Set" positionX="-155" positionY="149" width="128" height="103"/>
-        <element name="Athlete" positionX="-45" positionY="-98" width="162" height="163"/>
     </elements>
 </model>
