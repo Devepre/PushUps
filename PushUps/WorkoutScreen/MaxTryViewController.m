@@ -16,10 +16,10 @@
     
 }
 
-#pragma mark - Navigation
+#pragma mark - Super Overrides
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    [super prepareForSegue:segue sender:sender];
+- (void)performDataSavingProcess {
+    [super performDataSavingProcess];
     
     int32_t currentCount = [self.countLabel.text intValue];
     [self updateCurrentMaxWithNewValue:currentCount];

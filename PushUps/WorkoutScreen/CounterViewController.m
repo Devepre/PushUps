@@ -52,6 +52,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"%s", __func__);
     [self unsubscribeFromProximity];
+    [self performDataSavingProcess];
 }
 
 #pragma mark - Actions
@@ -137,6 +138,11 @@
         NSLog(@"Unresolved error %@, %@", error, error.userInfo);
         abort();
     }
+}
+
+// Method to override
+- (void)performDataSavingProcess {
+    ;
 }
 
 @end
