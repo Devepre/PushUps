@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
+#import "CounterViewController.h"
 
-@interface MaxTryViewController : UITableViewController
+@interface MaxTryViewController : CounterViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 

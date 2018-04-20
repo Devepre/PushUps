@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
+#import "CounterViewController.h"
 
-@interface TrainingViewController : UITableViewController
+@interface TrainingViewController : CounterViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 

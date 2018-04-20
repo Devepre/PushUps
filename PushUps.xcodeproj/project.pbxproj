@@ -18,6 +18,7 @@
 		CE24FA69208643F200382ED0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA68208643F200382ED0 /* SettingsViewController.m */; };
 		CE24FA6D2086467800382ED0 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA6C2086467800382ED0 /* DataController.m */; };
 		CE89DFDD2088960D00C9ADDC /* MaxTryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE89DFDC2088960D00C9ADDC /* MaxTryViewController.m */; };
+		CE89DFE0208A052000C9ADDC /* CounterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE89DFDF208A052000C9ADDC /* CounterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		CE24FA6C2086467800382ED0 /* DataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
 		CE89DFDB2088960D00C9ADDC /* MaxTryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxTryViewController.h; sourceTree = "<group>"; };
 		CE89DFDC2088960D00C9ADDC /* MaxTryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaxTryViewController.m; sourceTree = "<group>"; };
+		CE89DFDE208A052000C9ADDC /* CounterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CounterViewController.h; sourceTree = "<group>"; };
+		CE89DFDF208A052000C9ADDC /* CounterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CounterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 		CE24FA5C2084F64200382ED0 /* WorkoutScreen */ = {
 			isa = PBXGroup;
 			children = (
+				CE89DFDE208A052000C9ADDC /* CounterViewController.h */,
+				CE89DFDF208A052000C9ADDC /* CounterViewController.m */,
 				CE89DFDB2088960D00C9ADDC /* MaxTryViewController.h */,
 				CE89DFDC2088960D00C9ADDC /* MaxTryViewController.m */,
 				CE24FA602085EDB800382ED0 /* TrainingViewController.h */,
@@ -191,6 +196,7 @@
 				CE24FA5F2084F65D00382ED0 /* WorkoutViewController.m in Sources */,
 				CE24FA4E2084EB1500382ED0 /* PushUps.xcdatamodeld in Sources */,
 				CE24FA562084EB1600382ED0 /* main.m in Sources */,
+				CE89DFE0208A052000C9ADDC /* CounterViewController.m in Sources */,
 				CE24FA69208643F200382ED0 /* SettingsViewController.m in Sources */,
 				CE24FA6D2086467800382ED0 /* DataController.m in Sources */,
 				CE89DFDD2088960D00C9ADDC /* MaxTryViewController.m in Sources */,
