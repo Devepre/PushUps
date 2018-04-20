@@ -7,9 +7,10 @@
 
 @interface MaxTryViewController ()
 
-@property (strong, nonatomic) NSDate            *timeShot;
-@property (assign, nonatomic) NSTimeInterval    timeInterval;
-@property (strong, nonatomic) NSManagedObjectContext    *managedObjectContext;
+@property (strong, nonatomic) NSDate                                *timeShot;
+@property (assign, nonatomic) NSTimeInterval                         timeInterval;
+@property (strong, nonatomic) NSManagedObjectContext                *managedObjectContext;
+@property (strong, nonatomic, getter=getCurrentAthlete) AthleteMO   *currentAthlete;
 
 @end
 
@@ -56,6 +57,7 @@
     
     int32_t currentCount = [self.countLabel.text intValue];
     [self updateCurrentMaxWithNewValue:currentCount];
+    [self addToTotalCount:currentCount];
     
     [self saveManagedObjecContext];
 }
@@ -97,32 +99,42 @@
     UIDevice.currentDevice.proximityMonitoringEnabled = NO;
 }
 
+#pragma mark - Getters and Setters
+
+- (AthleteMO *)getCurrentAthlete {
+    AthleteMO *currentAthlete = _currentAthlete;
+    if (!currentAthlete) {
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Athlete"];
+        
+        NSError *error = nil;
+        NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+        if (!results) {
+            NSLog(@"Error fetching Athlete objects %@\n%@", [error localizedDescription], [error userInfo]);
+            abort();
+        }
+        currentAthlete = [results firstObject];
+    }
+    
+    return currentAthlete;
+}
+
 #pragma mark - Supplement methods
 
 - (BOOL)updateCurrentMaxWithNewValue:(int32_t)newMax {
     BOOL result = NO;
-    AthleteMO *currentAthlete = [self getCurrentAthlete];
-    int32_t currentMax = currentAthlete.currentMax;
+    int32_t currentMax = self.currentAthlete.currentMax;
     if (newMax > currentMax) {
-        currentAthlete.currentMax = newMax;
+        self.currentAthlete.currentMax = newMax;
         result = YES;
     }
     
     return result;
 }
 
-- (AthleteMO *)getCurrentAthlete {
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Athlete"];
-    
-    NSError *error = nil;
-    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
-    if (!results) {
-        NSLog(@"Error fetching Athlete objects %@\n%@", [error localizedDescription], [error userInfo]);
-        abort();
-    }
-    AthleteMO *currentAthlete = [results firstObject];
-    
-    return currentAthlete;
+- (void)addToTotalCount:(int32_t)count {
+    int64_t totalCount = self.currentAthlete.totalCount;
+    totalCount += (int64_t)count;
+    self.currentAthlete.totalCount = totalCount;
 }
 
 - (void)saveManagedObjecContext {
