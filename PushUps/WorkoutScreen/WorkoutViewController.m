@@ -1,5 +1,7 @@
 #import "WorkoutViewController.h"
 
+static CGFloat const UITableViewEdgeInsetTop = 20.f;
+
 @interface WorkoutViewController ()
 
 @end
@@ -13,7 +15,7 @@
     
     NSLog(@"%s", __func__);
     
-    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(UITableViewEdgeInsetTop, 0, 0, 0);
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -27,7 +29,6 @@
 // Centering headers
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
-        
         UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
         tableViewHeaderFooterView.textLabel.textAlignment = NSTextAlignmentCenter;
     }

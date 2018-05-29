@@ -3,6 +3,8 @@
 #import <CoreData/CoreData.h>
 #import "PushUps+CoreDataModel.h"
 
+static CGFloat const UITableViewEdgeInsetTop = 20.f;
+
 @interface SettingsViewController ()
 
 @property (strong, nonatomic) NSManagedObjectContext    *managedObjectContext;
@@ -16,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(UITableViewEdgeInsetTop, 0, 0, 0);
     self.managedObjectContext = [DataController sharedInstance].managedObjectContext;
 }
 
