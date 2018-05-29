@@ -95,7 +95,7 @@
                                                     <rect key="frame" x="165" y="6" width="84" height="30"/>
                                                     <state key="normal" title="Stop &amp; Save"/>
                                                     <connections>
-                                                        <segue destination="Fph-uh-FXw" kind="modal" modalTransitionStyle="crossDissolve" id="Vhu-wH-dYb"/>
+                                                        <segue destination="Fph-uh-FXw" kind="show" id="Vhu-wH-dYb"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -346,18 +346,20 @@
                                                     <rect key="frame" x="20" y="6" width="121" height="30"/>
                                                     <state key="normal" title="Max push-ups try"/>
                                                     <connections>
-                                                        <segue destination="Rp1-6x-u5e" kind="presentation" modalTransitionStyle="crossDissolve" id="ppM-Vy-aeB"/>
+                                                        <segue destination="Rp1-6x-u5e" kind="show" id="ppM-Vy-aeB"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adv-pp-JZZ">
                                                     <rect key="frame" x="301" y="6" width="93" height="30"/>
                                                     <state key="normal" title="Start Training"/>
                                                     <connections>
-                                                        <segue destination="QqB-Yx-c7x" kind="presentation" modalTransitionStyle="crossDissolve" id="gcy-jg-mqx"/>
+                                                        <segue destination="QqB-Yx-c7x" kind="show" id="gcy-jg-mqx"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Adv-pp-JZZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mab-YZ-2mB" secondAttribute="trailing" constant="20" id="6ls-Ma-5B0"/>
+                                                <constraint firstItem="Adv-pp-JZZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mab-YZ-2mB" secondAttribute="trailing" constant="20" id="9Nc-Ga-MxN"/>
                                                 <constraint firstItem="Adv-pp-JZZ" firstAttribute="centerY" secondItem="811-sv-i54" secondAttribute="centerY" id="CtA-zw-3ie"/>
                                                 <constraint firstItem="Mab-YZ-2mB" firstAttribute="centerY" secondItem="811-sv-i54" secondAttribute="centerY" id="L4i-2D-ibj"/>
                                                 <constraint firstAttribute="trailing" secondItem="Adv-pp-JZZ" secondAttribute="trailing" constant="20" id="dpT-Ki-9vZ"/>
@@ -485,7 +487,7 @@
                                                     <rect key="frame" x="165" y="6" width="84" height="30"/>
                                                     <state key="normal" title="Stop &amp; Save"/>
                                                     <connections>
-                                                        <segue destination="Fph-uh-FXw" kind="presentation" modalTransitionStyle="crossDissolve" id="ZQx-nb-EgU"/>
+                                                        <segue destination="Fph-uh-FXw" kind="show" id="ZQx-nb-EgU"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
