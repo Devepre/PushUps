@@ -8,6 +8,8 @@
 
 @synthesize countLabel;
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

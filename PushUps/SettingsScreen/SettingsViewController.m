@@ -11,6 +11,8 @@
 
 @implementation SettingsViewController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -42,7 +44,7 @@
 
 - (void)createDefaultDB {
     // Creating User
-    AthleteMO *athlete = [[AthleteMO alloc] initWithContext:self.managedObjectContext];
+    AthleteMO __unused *athlete = [[AthleteMO alloc] initWithContext:self.managedObjectContext];
     
     // Creating Session->Day->Set
     NSArray *sessionMinValues = @[@0, @6, @11, @21, @26, @31, @36, @41, @46, @51, @56, @61];

@@ -2,8 +2,8 @@
 #import "DataController.h"
 #import "PushUps+CoreDataModel.h"
 
-#define top_inset 20.0
-#define cheatSeconds 1.14
+static CGFloat const UITableViewEdgeInsetTop = 20.f;
+static CGFloat const cheatSeconds = 1.14f;
 
 @interface CounterViewController ()
 
@@ -16,10 +16,12 @@
 
 @implementation CounterViewController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(top_inset, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(UITableViewEdgeInsetTop, 0, 0, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.countLabel.userInteractionEnabled = YES;
