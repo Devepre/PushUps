@@ -26,7 +26,7 @@
     [super performDataSavingProcess];
     
     int32_t currentCount = [self.countLabel.text intValue];
-    [self updateCurrentMaxWithNewValue:currentCount];
+    [self updateTotalMaxWithNewValue:currentCount];
     [self addToTotalCount:currentCount];
     
     [self saveManagedObjecContext];

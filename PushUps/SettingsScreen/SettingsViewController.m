@@ -266,7 +266,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title = %@", title];
     fetchRequest.predicate = predicate;
     NSError *requestError = nil;
-    NSArray *objects = [self.managedObjectContext executeFetchRequest: fetchRequest
+    NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest
                                                                 error:&requestError];
     return [objects count] > 0;
 }

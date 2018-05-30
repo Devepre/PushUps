@@ -100,12 +100,14 @@ static CGFloat const cheatSeconds = 1.14f;
 
 #pragma mark - Supplement methods
 
-- (BOOL)updateCurrentMaxWithNewValue:(int32_t)newMax {
+- (BOOL)updateTotalMaxWithNewValue:(int32_t)newMax {
     NSLog(@"%s", __func__);
     BOOL result = NO;
-    int32_t currentMax = [DataController sharedInstance].currentAthlete.currentMax;
-    if (newMax > currentMax) {
-        [DataController sharedInstance].currentAthlete.currentMax = newMax;
+    [DataController sharedInstance].currentAthlete.currentMax = newMax;
+    // Setting new Total Max
+    int32_t currentTotalMax = [DataController sharedInstance].currentAthlete.totalMax;
+    if (newMax > currentTotalMax) {
+        [DataController sharedInstance].currentAthlete.totalMax = newMax;
         result = YES;
     }
     

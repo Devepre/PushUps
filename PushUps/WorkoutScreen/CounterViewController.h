@@ -7,7 +7,7 @@
 @property (assign, nonatomic) int32_t         repetitions;
 
 - (void)unsubscribeFromProximity;
-- (BOOL)updateCurrentMaxWithNewValue:(int32_t)newMax;
+- (BOOL)updateTotalMaxWithNewValue:(int32_t)newMax;
 - (void)addToTotalCount:(int32_t)count;
 - (void)saveManagedObjecContext;
 - (void)performDataSavingProcess;

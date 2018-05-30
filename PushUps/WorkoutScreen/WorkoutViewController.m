@@ -7,7 +7,9 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 @interface WorkoutViewController ()
 
-@property (strong, nonatomic) NSManagedObjectContext    *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) AthleteMO *currentAthlete;
+@property (strong, nonatomic) SessionMO *currentSession;
 
 @end
 
@@ -23,7 +25,8 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     
     self.managedObjectContext = [DataController sharedInstance].managedObjectContext;
     [self fetchData];
-    [self fetchSession];
+    [self fillLabels];
+    [self findSessionForMaxPushUps:self.currentAthlete.currentMax];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -32,20 +35,31 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)fetchData {
+- (void)findSessionForMaxPushUps:(int32_t)maxPushUps {
     NSLog(@"%s", __func__);
-    AthleteMO *currentAthlete = [DataController sharedInstance].currentAthlete;
-    int64_t totalCount = currentAthlete.totalCount;
-    int32_t currentMax = currentAthlete.currentMax;
-    self.pushUpsDoneLabel.text = [NSString stringWithFormat:@"%lld", totalCount];
-    self.personalRecordLabel.text = [NSString stringWithFormat:@"%d", currentMax];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]
+                                    initWithEntityName:@"Session"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%d BETWEEN {minValue, maxValue}", maxPushUps];
+    fetchRequest.predicate = predicate;
+    NSError *requestError = nil;
+    NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest
+                                                                error:&requestError];
+    SessionMO *session = [objects firstObject];
+    NSLog(@"Corresponding session is: %@ for max: %d", session.title, maxPushUps);
 }
 
-- (void)fetchSession {
+- (void)fetchData {
     NSLog(@"%s", __func__);
-    AthleteMO *currentAthlete = [DataController sharedInstance].currentAthlete;
-    SessionMO *currentSession = currentAthlete.currentTrainingSession;
-    self.setsLabel.text = currentSession.title;
+    self.currentAthlete = [DataController sharedInstance].currentAthlete;
+    self.currentSession = self.currentAthlete.currentTrainingSession;
+}
+
+- (void)fillLabels {
+    NSLog(@"%s", __func__);
+    self.donePushUpsLabel.text = [NSString stringWithFormat:@"%lld", self.currentAthlete.totalCount];
+    self.personalRecordPushUpsLabel.text = [NSString stringWithFormat:@"%d", self.currentAthlete.totalMax];
+    self.currentMaxPushUpsLabel.text = [NSString stringWithFormat:@"%d", self.currentAthlete.currentMax];
+    self.setsLabel.text = self.currentSession.title;
 }
 
 #pragma mark - UITableViewDelegate
