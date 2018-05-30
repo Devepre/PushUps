@@ -1,8 +1,13 @@
 #import "WorkoutViewController.h"
+#import "DataController.h"
+#import "AthleteMO+CoreDataProperties.h"
+#import "SessionMO+CoreDataProperties.h"
 
 static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 @interface WorkoutViewController ()
+
+@property (strong, nonatomic) NSManagedObjectContext    *managedObjectContext;
 
 @end
 
@@ -11,17 +16,36 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
+    NSLog(@"%s", __func__);
     [super viewDidLoad];
     
-    NSLog(@"%s", __func__);
-    
     self.tableView.contentInset = UIEdgeInsetsMake(UITableViewEdgeInsetTop, 0, 0, 0);
+    
+    self.managedObjectContext = [DataController sharedInstance].managedObjectContext;
+    [self fetchData];
+    [self fetchSession];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)fetchData {
+    NSLog(@"%s", __func__);
+    AthleteMO *currentAthlete = [DataController sharedInstance].currentAthlete;
+    int64_t totalCount = currentAthlete.totalCount;
+    int32_t currentMax = currentAthlete.currentMax;
+    self.pushUpsDoneLabel.text = [NSString stringWithFormat:@"%lld", totalCount];
+    self.personalRecordLabel.text = [NSString stringWithFormat:@"%d", currentMax];
+}
+
+- (void)fetchSession {
+    NSLog(@"%s", __func__);
+    AthleteMO *currentAthlete = [DataController sharedInstance].currentAthlete;
+    SessionMO *currentSession = currentAthlete.currentTrainingSession;
+    self.setsLabel.text = currentSession.title;
 }
 
 #pragma mark - UITableViewDelegate
