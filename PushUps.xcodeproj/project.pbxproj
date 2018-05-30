@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47B179D320BF162A00D5ABAE /* AppDataContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B179D220BF162A00D5ABAE /* AppDataContainer.m */; };
 		CE24FA452084EB1500382ED0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA442084EB1500382ED0 /* AppDelegate.m */; };
 		CE24FA4B2084EB1500382ED0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE24FA492084EB1500382ED0 /* Main.storyboard */; };
 		CE24FA4E2084EB1500382ED0 /* PushUps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA4C2084EB1500382ED0 /* PushUps.xcdatamodeld */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		47B179D120BF162A00D5ABAE /* AppDataContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDataContainer.h; sourceTree = "<group>"; };
+		47B179D220BF162A00D5ABAE /* AppDataContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDataContainer.m; sourceTree = "<group>"; };
 		CE24FA402084EB1500382ED0 /* PushUps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushUps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE24FA432084EB1500382ED0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CE24FA442084EB1500382ED0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 			children = (
 				CE24FA6B2086467800382ED0 /* DataController.h */,
 				CE24FA6C2086467800382ED0 /* DataController.m */,
+				47B179D120BF162A00D5ABAE /* AppDataContainer.h */,
+				47B179D220BF162A00D5ABAE /* AppDataContainer.m */,
 			);
 			path = AdditionalClasses;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 				CE24FA69208643F200382ED0 /* SettingsViewController.m in Sources */,
 				CE24FA6D2086467800382ED0 /* DataController.m in Sources */,
 				CE89DFDD2088960D00C9ADDC /* MaxTryViewController.m in Sources */,
+				47B179D320BF162A00D5ABAE /* AppDataContainer.m in Sources */,
 				CE24FA622085EDB800382ED0 /* TrainingViewController.m in Sources */,
 				CE24FA452084EB1500382ED0 /* AppDelegate.m in Sources */,
 			);

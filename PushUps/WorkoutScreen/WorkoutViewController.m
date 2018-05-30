@@ -2,6 +2,7 @@
 #import "DataController.h"
 #import "AthleteMO+CoreDataProperties.h"
 #import "SessionMO+CoreDataProperties.h"
+#import "AppDataContainer.h"
 
 static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
@@ -9,7 +10,6 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) AthleteMO *currentAthlete;
-@property (strong, nonatomic) SessionMO *currentSession;
 
 @end
 
@@ -46,12 +46,41 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
                                                                 error:&requestError];
     SessionMO *session = [objects firstObject];
     NSLog(@"Corresponding session is: %@ for max: %d", session.title, maxPushUps);
+    
+    if ([[AppDataContainer sharedInstance].senderSegueIdentifier isEqualToString:@"maxTryStopAndSave"]) {
+        [self showAlertForMaxPushUps:maxPushUps session:session];
+    }
+}
+
+- (void)showAlertForMaxPushUps:(int32_t)maxPushUps session:(SessionMO *)session {
+    NSString *title = [NSString stringWithFormat:@"Well done! Your result is\n%d push-ups!", maxPushUps];
+    NSString *message = [NSString stringWithFormat:@"Assign recommended session \"%@\"?", session.title];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:title
+                                message:message
+                                preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction = [UIAlertAction
+                                    actionWithTitle:@"Ok"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * _Nonnull action) {
+                                        NSLog(@"Ok");
+                                        self.currentAthlete.currentTrainingSession = session;
+                                        [self fillLabels];
+                                    }];
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction * _Nonnull action) {
+                                       NSLog(@"Cancel");
+                                   }];
+    [alert addAction:defaultAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)fetchData {
     NSLog(@"%s", __func__);
     self.currentAthlete = [DataController sharedInstance].currentAthlete;
-    self.currentSession = self.currentAthlete.currentTrainingSession;
 }
 
 - (void)fillLabels {
@@ -59,7 +88,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     self.donePushUpsLabel.text = [NSString stringWithFormat:@"%lld", self.currentAthlete.totalCount];
     self.personalRecordPushUpsLabel.text = [NSString stringWithFormat:@"%d", self.currentAthlete.totalMax];
     self.currentMaxPushUpsLabel.text = [NSString stringWithFormat:@"%d", self.currentAthlete.currentMax];
-    self.setsLabel.text = self.currentSession.title;
+    self.setsLabel.text = self.currentAthlete.currentTrainingSession.title;
 }
 
 #pragma mark - UITableViewDelegate

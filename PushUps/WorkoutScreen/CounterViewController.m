@@ -1,6 +1,7 @@
 #import "CounterViewController.h"
 #import "DataController.h"
 #import "PushUps+CoreDataModel.h"
+#import "AppDataContainer.h"
 
 static CGFloat const UITableViewEdgeInsetTop = 20.f;
 static CGFloat const cheatSeconds = 1.14f;
@@ -53,6 +54,7 @@ static CGFloat const cheatSeconds = 1.14f;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"%s segue idenitfier: %@", __func__, segue.identifier);
+    [AppDataContainer sharedInstance].senderSegueIdentifier = segue.identifier;
     [self unsubscribeFromProximity];
     [self performDataSavingProcess];
 }

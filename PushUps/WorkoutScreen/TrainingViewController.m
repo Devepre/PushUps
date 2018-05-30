@@ -26,7 +26,6 @@
     [super performDataSavingProcess];
     
     int32_t currentCount = self.repetitions;
-    [self updateTotalMaxWithNewValue:currentCount];
     [self addToTotalCount:currentCount];
     
     [self saveManagedObjecContext];

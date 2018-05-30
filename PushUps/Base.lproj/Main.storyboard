@@ -95,7 +95,7 @@
                                                     <rect key="frame" x="165" y="6" width="84" height="30"/>
                                                     <state key="normal" title="Stop &amp; Save"/>
                                                     <connections>
-                                                        <segue destination="Fph-uh-FXw" kind="show" identifier="stopAndSave" id="Vhu-wH-dYb"/>
+                                                        <segue destination="Fph-uh-FXw" kind="show" identifier="maxTryStopAndSave" id="Vhu-wH-dYb"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
