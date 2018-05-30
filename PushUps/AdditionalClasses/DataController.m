@@ -1,4 +1,5 @@
 #import "DataController.h"
+#import "PushUps+CoreDataModel.h"
 
 @implementation DataController
 
@@ -7,6 +8,7 @@
     static dispatch_once_t token;
     
     dispatch_once(&token, ^{
+        NSLog(@"%s - creating DataController", __func__);
         sharedInstance = [[DataController alloc] init];
         [sharedInstance initializePersistentContainer];
     });
@@ -22,6 +24,7 @@
 @synthesize persistentContainer = _persistentContainer;
 
 - (void)initializePersistentContainer {
+    NSLog(@"%s", __func__);
     // The persistent container for the application. This implementation creates and returns a container, having loaded the store for the application to it.
     @synchronized (self) {
         if (_persistentContainer == nil) {
@@ -40,6 +43,7 @@
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
+    NSLog(@"%s", __func__);
     NSManagedObjectContext *context = self.persistentContainer.viewContext;
     NSError *error = nil;
     if ([context hasChanges] && ![context save:&error]) {
@@ -49,6 +53,7 @@
 }
 
 - (void)deleteStore {
+    NSLog(@"%s", __func__);
     NSPersistentStoreCoordinator *storeCoordinator = self.persistentContainer.persistentStoreCoordinator;
     NSPersistentStore *store = [storeCoordinator.persistentStores firstObject];
     NSError *error;
@@ -58,6 +63,27 @@
                                             error:&error];
     _persistentContainer = nil;
     //ToDo: nillify Singleton correctly
+}
+
+#pragma mark - Additional Methods
+
+- (AthleteMO *)currentAthlete {
+    @synchronized (self) {
+        if (!_currentAthlete) {
+            NSLog(@"%s - fetching AthleteMO from database", __func__);
+            NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Athlete"];
+            
+            NSError *error = nil;
+            NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+            if (!results) {
+                NSLog(@"Error fetching Athlete objects %@\n%@", [error localizedDescription], [error userInfo]);
+                abort();
+            }
+            _currentAthlete = [results firstObject];
+        }
+    }
+    
+    return _currentAthlete;
 }
 
 @end

@@ -7,7 +7,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 @interface SettingsViewController ()
 
-@property (strong, nonatomic) NSManagedObjectContext    *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -24,6 +24,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 #pragma mark - Actions
 - (IBAction)createDefaultDBAction:(UIButton *)sender {
+    NSLog(@"%s", __func__);
     [self createDefaultDB];
 }
 
@@ -57,9 +58,9 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
         SessionMO *currentSession = [self createSessionWithTitle:[NSString stringWithFormat:@"%@ - %@ push-ups",
                                                                   [sessionMinValues objectAtIndex:i],
                                                                   [sessionMaxValues objectAtIndex:i]]
-                                                     andMinValue:[[sessionMinValues objectAtIndex:i] intValue]
-                                                     andMaxValue:[[sessionMaxValues objectAtIndex:i] intValue]
-                                                           andId:i];
+                                                     minValue:[[sessionMinValues objectAtIndex:i] intValue]
+                                                     maxValue:[[sessionMaxValues objectAtIndex:i] intValue]
+                                                           id:i];
         [sessionsArray addObject:currentSession];
     }
     
@@ -76,7 +77,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     NSArray *dayBreakIntervalDays = @[@1, @1, @2, @1, @1, @2];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                 withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                    andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                    dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     // Session 2
     setCounts1 = @[@5,  @6,  @4,  @4,  @5];
@@ -88,7 +89,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     days = @[setCounts1, setCounts2, setCounts3, setCounts4, setCounts5, setCounts6];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                 withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                    andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                    dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     // Session 3
     setCounts1 = @[@8,  @9,  @7,  @7,  @8];
@@ -100,7 +101,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     days = @[setCounts1, setCounts2, setCounts3, setCounts4, setCounts5, setCounts6];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                 withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                    andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                    dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     // Session 4
     setCounts1 = @[@12, @17, @13, @13, @17];
@@ -112,7 +113,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     days = @[setCounts1, setCounts2, setCounts3, setCounts4, setCounts5, setCounts6];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                 withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                    andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                    dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     // Session 5
     setCounts1 = @[@14, @18, @14, @14, @20];
@@ -124,7 +125,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     days = @[setCounts1, setCounts2, setCounts3, setCounts4, setCounts5, setCounts6];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                 withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                    andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                    dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     // Session 6
     setCounts1 = @[@17, @19, @15, @15, @20];
@@ -135,7 +136,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     dayBreakIntervalDays = @[@1, @1, @2];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                 withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                    andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                    dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     // Session 7
     setCounts1 = @[@22, @24, @20, @20, @25];
@@ -144,7 +145,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     days = @[setCounts1, setCounts2, setCounts3];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                       withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                          andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                          dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     // Session 8
     setCounts1 = @[@27, @29, @25, @25, @35];
@@ -153,7 +154,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     days = @[setCounts1, setCounts2, setCounts3];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                       withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                          andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                          dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     // Session 9
     setCounts1 = @[@30, @34, @30, @30, @40];
@@ -162,7 +163,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     days = @[setCounts1, setCounts2, setCounts3];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                       withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                          andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                          dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     // Session 10
     setCounts1 = @[@30, @39, @35, @35, @42];
@@ -171,7 +172,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     days = @[setCounts1, setCounts2, setCounts3];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                       withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                          andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                          dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     // Session 11
     setCounts1 = @[@30, @44, @40, @40, @55];
@@ -180,7 +181,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     days = @[setCounts1, setCounts2, setCounts3];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                       withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                          andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                          dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     // Session 12
     setCounts1 = @[@35, @49, @45, @45, @55];
@@ -189,12 +190,12 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     days = @[setCounts1, setCounts2, setCounts3];
     [[sessionsArray objectAtIndex:index++] setDaysArray: [self createDaysFromDaysArray:days
                                                       withDayRelaxIntervalSecondsArray:dayRelaxIntervalSeconds
-                                                          andDayBreakIntervalDaysArray:dayBreakIntervalDays]];
+                                                          dayBreakIntervalDaysArray:dayBreakIntervalDays]];
     
     [self saveManagedObjecContext];
 }
 
-- (SessionMO *)createSessionWithTitle:(NSString *)title andMinValue:(int32_t)minValue andMaxValue:(int32_t)maxValue andId:(int32_t)objectID {
+- (SessionMO *)createSessionWithTitle:(NSString *)title minValue:(int32_t)minValue maxValue:(int32_t)maxValue id:(int32_t)objectID {
     SessionMO *newSession = nil;
     if ([self existSessionWithTitle:title]) {
         [self presentAlertErrorWithMessage:[NSString stringWithFormat:@"Session %@ already exist", title]];
@@ -209,19 +210,19 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     return newSession;
 }
 
-- (NSSet *)createDaysFromDaysArray:(NSArray *)days withDayRelaxIntervalSecondsArray:(NSArray *)dayRelaxIntervalSeconds  andDayBreakIntervalDaysArray:(NSArray *)dayBreakIntervalDays {
+- (NSSet *)createDaysFromDaysArray:(NSArray *)days withDayRelaxIntervalSecondsArray:(NSArray *)dayRelaxIntervalSeconds  dayBreakIntervalDaysArray:(NSArray *)dayBreakIntervalDays {
     NSMutableSet *daysForSession = [[NSMutableSet alloc] init];
     for (int i = 0; i < days.count; i++) {
         DayMO *currentDay = [self createDayWithRelaxIntervalSeconds:[[dayRelaxIntervalSeconds objectAtIndex:i] intValue]
-                                               andBreakIntervalDays:[[dayBreakIntervalDays objectAtIndex:i] intValue]
-                                                              andID:i];
+                                               breakIntervalDays:[[dayBreakIntervalDays objectAtIndex:i] intValue]
+                                                              id:i];
         currentDay.setArray = [self createSetsFromCountsArray:[days objectAtIndex:i]];
         [daysForSession addObject:currentDay];
     }
     return [NSSet setWithSet:daysForSession];
 }
 
-- (DayMO *)createDayWithRelaxIntervalSeconds:(int32_t)relaxIntervalSeconds andBreakIntervalDays:(int32_t)breakIntervalDays andID:(int32_t)objectID {
+- (DayMO *)createDayWithRelaxIntervalSeconds:(int32_t)relaxIntervalSeconds breakIntervalDays:(int32_t)breakIntervalDays id:(int32_t)objectID {
     DayMO *newDay = [[DayMO alloc] initWithContext:self.managedObjectContext];
     newDay.id = objectID;
     newDay.relaxIntervalSeconds = relaxIntervalSeconds;
@@ -234,13 +235,13 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     NSMutableSet *result = [[NSMutableSet alloc] init];
     
     for (int i = 0; i < counts.count; ++i) {
-        [result addObject:[self createSetWithCount:[[counts objectAtIndex:i] intValue] andId:i]];
+        [result addObject:[self createSetWithCount:[[counts objectAtIndex:i] intValue] id:i]];
     }
     
     return [NSSet setWithSet:result];
 }
 
-- (SetMO *)createSetWithCount:(int32_t)count andId:(int32_t)objectID {
+- (SetMO *)createSetWithCount:(int32_t)count id:(int32_t)objectID {
     SetMO *newSet = [[SetMO alloc] initWithContext:self.managedObjectContext];
     newSet.id = objectID;
     newSet.completed = NO;

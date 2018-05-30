@@ -7,10 +7,9 @@ static CGFloat const cheatSeconds = 1.14f;
 
 @interface CounterViewController ()
 
-@property (strong, nonatomic) NSDate                                *timeShot;
-@property (assign, nonatomic) NSTimeInterval                         timeInterval;
-@property (strong, nonatomic) NSManagedObjectContext                *managedObjectContext;
-@property (strong, nonatomic, getter=getCurrentAthlete) AthleteMO   *currentAthlete;
+@property (strong, nonatomic) NSDate                 *timeShot;
+@property (assign, nonatomic) NSTimeInterval          timeInterval;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -19,6 +18,7 @@ static CGFloat const cheatSeconds = 1.14f;
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
+    NSLog(@"%s", __func__);
     [super viewDidLoad];
     
     self.tableView.contentInset = UIEdgeInsetsMake(UITableViewEdgeInsetTop, 0, 0, 0);
@@ -40,10 +40,10 @@ static CGFloat const cheatSeconds = 1.14f;
                                                object:nil];
 }
 
+#pragma mark - UITableViewDelegate
 // Centering headers
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
-        
         UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
         tableViewHeaderFooterView.textLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -52,7 +52,7 @@ static CGFloat const cheatSeconds = 1.14f;
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"%s", __func__);
+    NSLog(@"%s segue idenitfier: %@", __func__, segue.identifier);
     [self unsubscribeFromProximity];
     [self performDataSavingProcess];
 }
@@ -60,6 +60,7 @@ static CGFloat const cheatSeconds = 1.14f;
 #pragma mark - Actions
 
 - (void)didTapLabelWithGesture:(UITapGestureRecognizer *)tapGesture {
+    NSLog(@"%s", __func__);
     [self countStepIncrease:self.increase];
 }
 
@@ -67,7 +68,7 @@ static CGFloat const cheatSeconds = 1.14f;
 
 - (void)sensorStateChange:(NSNotificationCenter *)notification {
     NSLog(@"%s", __func__);
-    if ([UIDevice.currentDevice proximityState] == YES) {
+    if ([UIDevice.currentDevice proximityState]) {
         self.timeInterval = [self.timeShot timeIntervalSinceNow];
         printf("%f\n", self.timeInterval);
     } else {
@@ -90,38 +91,21 @@ static CGFloat const cheatSeconds = 1.14f;
 }
 
 - (void)unsubscribeFromProximity {
+    NSLog(@"%s", __func__);
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIDeviceProximityStateDidChangeNotification
                                                   object:nil];
     UIDevice.currentDevice.proximityMonitoringEnabled = NO;
 }
 
-#pragma mark - Getters and Setters
-
-- (AthleteMO *)getCurrentAthlete {
-    AthleteMO *currentAthlete = _currentAthlete;
-    if (!currentAthlete) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Athlete"];
-        
-        NSError *error = nil;
-        NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
-        if (!results) {
-            NSLog(@"Error fetching Athlete objects %@\n%@", [error localizedDescription], [error userInfo]);
-            abort();
-        }
-        currentAthlete = [results firstObject];
-    }
-    
-    return currentAthlete;
-}
-
 #pragma mark - Supplement methods
 
 - (BOOL)updateCurrentMaxWithNewValue:(int32_t)newMax {
+    NSLog(@"%s", __func__);
     BOOL result = NO;
-    int32_t currentMax = self.currentAthlete.currentMax;
+    int32_t currentMax = [DataController sharedInstance].currentAthlete.currentMax;
     if (newMax > currentMax) {
-        self.currentAthlete.currentMax = newMax;
+        [DataController sharedInstance].currentAthlete.currentMax = newMax;
         result = YES;
     }
     
@@ -129,12 +113,14 @@ static CGFloat const cheatSeconds = 1.14f;
 }
 
 - (void)addToTotalCount:(int32_t)count {
-    int64_t totalCount = self.currentAthlete.totalCount;
+    NSLog(@"%s", __func__);
+    int64_t totalCount = [DataController sharedInstance].currentAthlete.totalCount;
     totalCount += (int64_t)count;
-    self.currentAthlete.totalCount = totalCount;
+    [DataController sharedInstance].currentAthlete.totalCount = totalCount;
 }
 
 - (void)saveManagedObjecContext {
+    NSLog(@"%s", __func__);
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, error.userInfo);
@@ -144,6 +130,7 @@ static CGFloat const cheatSeconds = 1.14f;
 
 // Method to override
 - (void)performDataSavingProcess {
+    NSLog(@"%s", __func__);
     ;
 }
 

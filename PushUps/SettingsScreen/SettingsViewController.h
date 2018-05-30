@@ -2,5 +2,4 @@
 
 @interface SettingsViewController : UITableViewController
 
-
 @end
