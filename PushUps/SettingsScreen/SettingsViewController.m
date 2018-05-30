@@ -51,7 +51,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     
     // Creating Session->Day->Set
     NSArray *sessionMinValues = @[@0, @6, @11, @21, @26, @31, @36, @41, @46, @51, @56, @61];
-    NSArray *sessionMaxValues = @[@5, @10, @20, @25, @30, @35, @406, @45, @50, @55, @60, @99];
+    NSArray *sessionMaxValues = @[@5, @10, @20, @25, @30, @35, @40, @45, @50, @55, @60, @99];
     
     NSMutableArray *sessionsArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < sessionMaxValues.count; i++) {
