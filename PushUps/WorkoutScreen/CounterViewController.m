@@ -35,7 +35,7 @@ static CGFloat const cheatSeconds = 1.14f;
     self.timeShot = [NSDate dateWithTimeIntervalSince1970:0];
     
     UIDevice.currentDevice.proximityMonitoringEnabled = YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self
+    [[NSNotificationCenter defaultCenter] addObserver:self.view
                                              selector:@selector(sensorStateChange:)
                                                  name:UIDeviceProximityStateDidChangeNotification
                                                object:nil];
