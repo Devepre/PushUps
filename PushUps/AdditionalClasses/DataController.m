@@ -115,7 +115,7 @@ typedef NS_ENUM(NSUInteger, KSVErrorCode) {
 - (void)saveContext {
     NSLog(@"%s", __func__);
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (!managedObjectContext) {
+    if (managedObjectContext) {
         NSError *error = nil;
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
@@ -124,6 +124,8 @@ typedef NS_ENUM(NSUInteger, KSVErrorCode) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+    } else {
+        NSLog(@"Warning: NSManagedObjectContext is nil during saving!");
     }
 }
 
