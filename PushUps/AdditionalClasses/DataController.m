@@ -60,12 +60,18 @@ typedef NS_ENUM(NSUInteger, KSVErrorCode) {
                        URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",
                                                     storeName,
                                                     storeProvider]];
+    
+    // Versioning lightweight
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                    configuration:nil
                                                              URL:storeURL
-                                                         options:nil
+                                                         options:options
                                                            error:&error]) {
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         dictionary[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
