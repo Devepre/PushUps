@@ -5,14 +5,16 @@
         <attribute name="currentSessionCompletion" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="estimatedFinishDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="maxPerSession" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="maxPower" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="stillToDo" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalMax" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="completedSessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="completedByAthlete" inverseEntity="Session" syncable="YES"/>
         <relationship name="currentTrainingSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="currentlyForAthlete" inverseEntity="Session" syncable="YES"/>
+        <relationship name="sessionsArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="belongsToAthlete" inverseEntity="Session" syncable="YES"/>
     </entity>
-    <entity name="Day" representedClassName="DayMO" syncable="YES" codeGenerationType="class">
+    <entity name="Day" representedClassName="DayMO" syncable="YES">
         <attribute name="breakIntervalDays" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="numberOfSetsCompleted" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="relaxIntervalSeconds" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -20,26 +22,27 @@
         <relationship name="currentSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Set" syncable="YES"/>
         <relationship name="setArray" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Set" inverseName="belongsToDay" inverseEntity="Set" syncable="YES"/>
     </entity>
-    <entity name="Session" representedClassName="SessionMO" syncable="YES" codeGenerationType="class">
+    <entity name="Session" representedClassName="SessionMO" syncable="YES">
+        <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="maxValue" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="minValue" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
-        <relationship name="completedByAthlete" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Athlete" inverseName="completedSessions" inverseEntity="Athlete" syncable="YES"/>
+        <relationship name="belongsToAthlete" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Athlete" inverseName="sessionsArray" inverseEntity="Athlete" syncable="YES"/>
         <relationship name="currentDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" syncable="YES"/>
         <relationship name="currentlyForAthlete" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Athlete" inverseName="currentTrainingSession" inverseEntity="Athlete" syncable="YES"/>
         <relationship name="daysArray" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Day" inverseName="belongsToSession" inverseEntity="Day" syncable="YES"/>
     </entity>
-    <entity name="Set" representedClassName="SetMO" syncable="YES" codeGenerationType="class">
+    <entity name="Set" representedClassName="SetMO" syncable="YES">
         <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="count" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="belongsToDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="setArray" inverseEntity="Day" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Athlete" positionX="-45" positionY="-98" width="162" height="180"/>
-        <element name="Day" positionX="-603.25" positionY="-16.65234375" width="162" height="150"/>
-        <element name="Session" positionX="-270" positionY="-68" width="128" height="165"/>
-        <element name="Set" positionX="-334.34375" positionY="216.640625" width="128" height="103"/>
+        <element name="Athlete" positionX="-33.19921875" positionY="-94.0859375" width="162" height="195"/>
+        <element name="Day" positionX="-603.25" positionY="-16.65234375" width="162" height="165"/>
+        <element name="Session" positionX="-270" positionY="-68" width="128" height="180"/>
+        <element name="Set" positionX="-334.34375" positionY="216.640625" width="128" height="105"/>
     </elements>
 </model>

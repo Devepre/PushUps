@@ -10,5 +10,6 @@
 - (BOOL)updateTotalMaxWithNewValue:(int32_t)newMax;
 - (void)addToTotalCount:(int32_t)count;
 - (void)performDataSavingProcess;
+- (void)stopCounting;
 
 @end

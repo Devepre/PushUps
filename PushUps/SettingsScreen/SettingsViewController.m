@@ -1,7 +1,9 @@
 #import "SettingsViewController.h"
 #import "DataController.h"
-#import "PushUps+CoreDataModel.h"
 #import "AthleteMO+CoreDataProperties.h"
+#import "SessionMO+CoreDataProperties.h"
+#import "DayMO+CoreDataProperties.h"
+#import "SetMO+CoreDataProperties.h"
 
 @import CoreData;
 
@@ -71,6 +73,8 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
                                                            id:i];
         [sessionsArray addObject:currentSession];
     }
+    
+    athlete.sessionsArray = [[NSSet alloc] initWithArray:sessionsArray];
     
     int index = 0;
     // Session 1

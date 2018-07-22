@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DayMO : NSManagedObject
 
 - (void)markCompleted;
+- (SetMO *)firstSet;
 
 @end
 

@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, readonly) NSString   *setsDescription;
 @property (assign, nonatomic, readonly) NSUInteger  setPushupNumber;
 
+- (void)markCompleted;
+
 @end
 
 NS_ASSUME_NONNULL_END

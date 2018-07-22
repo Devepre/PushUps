@@ -43,4 +43,9 @@
 }
 
 
+- (void)markCompleted {
+    self.maxPower = YES;
+}
+
+
 @end

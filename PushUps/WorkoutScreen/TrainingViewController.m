@@ -11,6 +11,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @property (weak, nonatomic) IBOutlet UILabel *detail1;
+@property (weak, nonatomic) IBOutlet UILabel *trainingPlanNLabel;
 
 @property (strong, nonatomic) AthleteMO *currentAthlete;
 @property (strong, nonatomic) SessionMO *currentSession;
@@ -29,16 +30,29 @@
     NSLog(@"%s", __func__);
     [super viewDidLoad];
     
-    self.countLabel.text = @"8";
-    self.increase = NO;
-    
     // Core Data
     self.currentAthlete = [DataController sharedInstance].currentAthlete;
-    [self findDays];
+    self.currentSession = self.currentAthlete.currentTrainingSession;
+    
+    // Labels
+    NSInteger currentSetCount = self.currentAthlete.currentTrainingSession.currentDay.currentSet.count;
+    self.countLabel.text = [NSString stringWithFormat:@"%ld", (long)currentSetCount];
+    self.detail1.text = self.countLabel.text;
+    self.trainingPlanNLabel.text = self.currentAthlete.setsDescription;
+    
+    // Business logic
+    self.increase = NO;
 }
 
 
 #pragma mark - Super Overrides
+
+- (void)stopCounting {
+    // TODO: make sound
+    [self.currentAthlete.currentTrainingSession.currentDay.currentSet markCompleted];
+    
+    [super stopCounting];
+}
 
 - (void)performDataSavingProcess {
     NSLog(@"%s", __func__);
@@ -47,19 +61,6 @@
     [self addToTotalCount:currentCount];
     
     [super performDataSavingProcess];
-}
-
-
-#pragma mark - Core Data
-
-- (void)findDays {
-    NSLog(@"%s", __func__);
-    
-    self.currentSession = self.currentAthlete.currentTrainingSession;
-    
-    SetMO *currentSet1 = self.currentAthlete.currentTrainingSession.currentDay.currentSet;
-    self.detail1.text = [NSString stringWithFormat:@"%d", currentSet1.count];
-
 }
 
 

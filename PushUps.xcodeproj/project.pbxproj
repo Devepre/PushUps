@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		248E5EF92104E79D00E90445 /* AthleteMO+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 248E5EF72104E79D00E90445 /* AthleteMO+CoreDataClass.m */; };
 		248E5EFA2104E79D00E90445 /* AthleteMO+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 248E5EF82104E79D00E90445 /* AthleteMO+CoreDataProperties.m */; };
+		248E5F002105025F00E90445 /* SetMO+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 248E5EFE2105025F00E90445 /* SetMO+CoreDataClass.m */; };
+		248E5F012105025F00E90445 /* SetMO+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 248E5EFF2105025F00E90445 /* SetMO+CoreDataProperties.m */; };
+		248E5F062105036E00E90445 /* DayMO+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 248E5F042105036E00E90445 /* DayMO+CoreDataClass.m */; };
+		248E5F072105036E00E90445 /* DayMO+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 248E5F052105036E00E90445 /* DayMO+CoreDataProperties.m */; };
+		248E5F0C2105048800E90445 /* SessionMO+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 248E5F0A2105048800E90445 /* SessionMO+CoreDataClass.m */; };
+		248E5F0D2105048800E90445 /* SessionMO+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 248E5F0B2105048800E90445 /* SessionMO+CoreDataProperties.m */; };
 		47B179D320BF162A00D5ABAE /* AppDataContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B179D220BF162A00D5ABAE /* AppDataContainer.m */; };
 		CE24FA452084EB1500382ED0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA442084EB1500382ED0 /* AppDelegate.m */; };
 		CE24FA4B2084EB1500382ED0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE24FA492084EB1500382ED0 /* Main.storyboard */; };
@@ -29,6 +35,18 @@
 		248E5EF62104E79D00E90445 /* AthleteMO+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AthleteMO+CoreDataClass.h"; sourceTree = "<group>"; };
 		248E5EF72104E79D00E90445 /* AthleteMO+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AthleteMO+CoreDataClass.m"; sourceTree = "<group>"; };
 		248E5EF82104E79D00E90445 /* AthleteMO+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AthleteMO+CoreDataProperties.m"; sourceTree = "<group>"; };
+		248E5EFC2105025F00E90445 /* SetMO+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SetMO+CoreDataProperties.h"; sourceTree = "<group>"; };
+		248E5EFD2105025F00E90445 /* SetMO+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SetMO+CoreDataClass.h"; sourceTree = "<group>"; };
+		248E5EFE2105025F00E90445 /* SetMO+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SetMO+CoreDataClass.m"; sourceTree = "<group>"; };
+		248E5EFF2105025F00E90445 /* SetMO+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SetMO+CoreDataProperties.m"; sourceTree = "<group>"; };
+		248E5F022105036E00E90445 /* DayMO+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DayMO+CoreDataProperties.h"; sourceTree = "<group>"; };
+		248E5F032105036E00E90445 /* DayMO+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DayMO+CoreDataClass.h"; sourceTree = "<group>"; };
+		248E5F042105036E00E90445 /* DayMO+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DayMO+CoreDataClass.m"; sourceTree = "<group>"; };
+		248E5F052105036E00E90445 /* DayMO+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DayMO+CoreDataProperties.m"; sourceTree = "<group>"; };
+		248E5F082105048800E90445 /* SessionMO+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SessionMO+CoreDataProperties.h"; sourceTree = "<group>"; };
+		248E5F092105048800E90445 /* SessionMO+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SessionMO+CoreDataClass.h"; sourceTree = "<group>"; };
+		248E5F0A2105048800E90445 /* SessionMO+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SessionMO+CoreDataClass.m"; sourceTree = "<group>"; };
+		248E5F0B2105048800E90445 /* SessionMO+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SessionMO+CoreDataProperties.m"; sourceTree = "<group>"; };
 		47B179D120BF162A00D5ABAE /* AppDataContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDataContainer.h; sourceTree = "<group>"; };
 		47B179D220BF162A00D5ABAE /* AppDataContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDataContainer.m; sourceTree = "<group>"; };
 		CE24FA402084EB1500382ED0 /* PushUps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushUps.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +86,18 @@
 		248E5EFB2104E7B800E90445 /* CoreDataClasses */ = {
 			isa = PBXGroup;
 			children = (
+				248E5F082105048800E90445 /* SessionMO+CoreDataProperties.h */,
+				248E5F092105048800E90445 /* SessionMO+CoreDataClass.h */,
+				248E5F0A2105048800E90445 /* SessionMO+CoreDataClass.m */,
+				248E5F0B2105048800E90445 /* SessionMO+CoreDataProperties.m */,
+				248E5F022105036E00E90445 /* DayMO+CoreDataProperties.h */,
+				248E5F032105036E00E90445 /* DayMO+CoreDataClass.h */,
+				248E5F042105036E00E90445 /* DayMO+CoreDataClass.m */,
+				248E5F052105036E00E90445 /* DayMO+CoreDataProperties.m */,
+				248E5EFC2105025F00E90445 /* SetMO+CoreDataProperties.h */,
+				248E5EFD2105025F00E90445 /* SetMO+CoreDataClass.h */,
+				248E5EFE2105025F00E90445 /* SetMO+CoreDataClass.m */,
+				248E5EFF2105025F00E90445 /* SetMO+CoreDataProperties.m */,
 				248E5EF52104E79D00E90445 /* AthleteMO+CoreDataProperties.h */,
 				248E5EF62104E79D00E90445 /* AthleteMO+CoreDataClass.h */,
 				248E5EF72104E79D00E90445 /* AthleteMO+CoreDataClass.m */,
@@ -216,15 +246,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				248E5F012105025F00E90445 /* SetMO+CoreDataProperties.m in Sources */,
 				CE24FA5F2084F65D00382ED0 /* WorkoutViewController.m in Sources */,
 				CE24FA4E2084EB1500382ED0 /* PushUps.xcdatamodeld in Sources */,
 				CE24FA562084EB1600382ED0 /* main.m in Sources */,
+				248E5F062105036E00E90445 /* DayMO+CoreDataClass.m in Sources */,
 				CE89DFE0208A052000C9ADDC /* CounterViewController.m in Sources */,
 				CE24FA69208643F200382ED0 /* SettingsViewController.m in Sources */,
 				248E5EF92104E79D00E90445 /* AthleteMO+CoreDataClass.m in Sources */,
+				248E5F002105025F00E90445 /* SetMO+CoreDataClass.m in Sources */,
 				CE24FA6D2086467800382ED0 /* DataController.m in Sources */,
+				248E5F0D2105048800E90445 /* SessionMO+CoreDataProperties.m in Sources */,
+				248E5F072105036E00E90445 /* DayMO+CoreDataProperties.m in Sources */,
 				CE89DFDD2088960D00C9ADDC /* MaxTryViewController.m in Sources */,
 				47B179D320BF162A00D5ABAE /* AppDataContainer.m in Sources */,
+				248E5F0C2105048800E90445 /* SessionMO+CoreDataClass.m in Sources */,
 				CE24FA622085EDB800382ED0 /* TrainingViewController.m in Sources */,
 				CE24FA452084EB1500382ED0 /* AppDelegate.m in Sources */,
 				248E5EFA2104E79D00E90445 /* AthleteMO+CoreDataProperties.m in Sources */,

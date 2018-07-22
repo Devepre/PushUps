@@ -10,16 +10,36 @@
 #import "SetMO+CoreDataClass.h"
 
 #import "DayMO+CoreDataProperties.h"
+#import "DataController.h"
+#import "AthleteMO+CoreDataProperties.h"
+#import "SetMO+CoreDataProperties.h"
+#import "SessionMO+CoreDataClass.h"
 
 @implementation SetMO
 
 - (void)markCompleted {
     self.completed = YES;
+    // TODO: handle logging to the Calendar
     DayMO *currentDay = self.belongsToDay;
+    
     NSInteger numberOfSetsForCurrentDay = [currentDay.setArray count] - 1;
     if (self.id == numberOfSetsForCurrentDay) {
         [currentDay markCompleted];
+    } else {
+        [DataController sharedInstance].currentAthlete.currentTrainingSession.currentDay.currentSet = [self nextSet];
     }
+}
+
+
+- (SetMO *)nextSet {
+    NSInteger currentID = self.id + 1;
+
+    NSSet *set = [DataController sharedInstance].currentAthlete.currentTrainingSession.currentDay.setArray;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %d", currentID];
+    set = [set filteredSetUsingPredicate:predicate];
+    NSLog(@"%@", set);
+    
+    return [set anyObject];
 }
 
 @end

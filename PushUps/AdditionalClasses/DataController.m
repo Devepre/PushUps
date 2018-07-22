@@ -1,5 +1,4 @@
 #import "DataController.h"
-#import "PushUps+CoreDataModel.h"
 
 static NSString * const storeName       = @"PushUps";
 static NSString * const storeProvider   = @".sqlite";

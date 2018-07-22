@@ -1,6 +1,5 @@
 #import "CounterViewController.h"
 #import "DataController.h"
-#import "PushUps+CoreDataModel.h"
 #import "AppDataContainer.h"
 #import "AthleteMO+CoreDataProperties.h"
 
@@ -97,10 +96,18 @@ static CGFloat const cheatSeconds = 1.14f;
 - (void)countStepIncrease:(BOOL)increase {
     NSLog(@"%s", __func__);
     NSInteger integerValue = [self.countLabel.text integerValue];
-    integerValue+= increase ? 1 : -1;
-    self.countLabel.text = [NSString stringWithFormat:@"%ld", (long)integerValue];
-    
+
+    if (increase) {
+        ++integerValue;
+    } else if (integerValue > 1) {
+        --integerValue;
+    } else {
+        self.countLabel.text = [NSString stringWithFormat:@"%ld", (long)integerValue];
+        [self stopCounting];
+    }
+
     self.repetitions++;
+    self.countLabel.text = [NSString stringWithFormat:@"%ld", (long)integerValue];
 }
 
 - (void)unsubscribeFromProximity {
@@ -134,6 +141,25 @@ static CGFloat const cheatSeconds = 1.14f;
     int64_t totalCount = [DataController sharedInstance].currentAthlete.totalCount;
     totalCount += (int64_t)count;
     [DataController sharedInstance].currentAthlete.totalCount = totalCount;
+}
+
+
+- (void)stopCounting {
+    // TODO: make sound
+    
+    [self presentAlertErrorWithMessage:@"Enough!"];
+}
+
+
+- (void)presentAlertErrorWithMessage:(NSString *)messageText {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:messageText
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:nil];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
