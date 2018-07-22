@@ -1,73 +1,144 @@
 #import "DataController.h"
 #import "PushUps+CoreDataModel.h"
 
+static NSString * const storeName       = @"PushUps";
+static NSString * const storeProvider   = @".sqlite";
+static NSString * const errorDomain     = @"com.del.sk.PushUps";
+
+typedef NS_ENUM(NSUInteger, KSVErrorCode) {
+    SKVGeneralError = 2000,
+};
+
 @implementation DataController
+
 
 + (DataController *)sharedInstance {
     static DataController *sharedInstance = nil;
     static dispatch_once_t token;
     
     dispatch_once(&token, ^{
-        NSLog(@"%s - creating DataController", __func__);
+        NSLog(@"%s - creating %@", __func__, NSStringFromClass([self class]));
         sharedInstance = [[DataController alloc] init];
-        [sharedInstance initializePersistentContainer];
+        [sharedInstance initializeManagedObjectModel];
     });
     
     return sharedInstance;
 }
 
-- (NSManagedObjectContext *)managedObjectContext {
-    return self.persistentContainer.viewContext;
-}
 
 #pragma mark - Core Data stack
-@synthesize persistentContainer = _persistentContainer;
 
-- (void)initializePersistentContainer {
-    NSLog(@"%s", __func__);
-    // The persistent container for the application. This implementation creates and returns a container, having loaded the store for the application to it.
-    @synchronized (self) {
-        if (_persistentContainer == nil) {
-            _persistentContainer = [[NSPersistentContainer alloc] initWithName:@"PushUps"];
-            [_persistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription *storeDescription, NSError *error) {
-                if (error != nil) {
-                    NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-                    abort();
-                }
-            }];
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+
+- (void)initializeManagedObjectModel {
+    @synchronized(self) {
+        NSLog(@"%s", __func__);
+        // The managed object model for the application.
+        if (!_managedObjectModel) {
+            NSURL *modelURL = [[NSBundle mainBundle] URLForResource:storeName
+                                                      withExtension:@"momd"];
+            _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
         }
+        // It is a fatal error for the application not to be able to find and load its model
+        assert(_managedObjectModel);
+    }
+}
+
+
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    NSLog(@"%s", __func__);
+    if (_persistentStoreCoordinator) {
+        return _persistentStoreCoordinator;
+    }
+    // Create the coordinator and store
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
+                                   initWithManagedObjectModel:[self managedObjectModel]];
+    NSURL *storeURL = [[self applicationDocumentsDirectory]
+                       URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",
+                                                    storeName,
+                                                    storeProvider]];
+    NSError *error = nil;
+    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                   configuration:nil
+                                                             URL:storeURL
+                                                         options:nil
+                                                           error:&error]) {
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        dictionary[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
+        dictionary[NSLocalizedFailureReasonErrorKey] = failureReason;
+        dictionary[NSUnderlyingErrorKey] = error;
+        error = [NSError errorWithDomain:errorDomain
+                                    code:SKVGeneralError
+                                userInfo:dictionary];
+        // Replace this with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate.
+        // You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
     }
     
+    return _persistentStoreCoordinator;
 }
+
+
+- (NSManagedObjectContext *)managedObjectContext {
+    NSLog(@"%s", __func__);
+    // Returns the managed object context for the application
+    // (which is already bound to the persistent store coordinator for the application)
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (!coordinator) {
+        return nil;
+    }
+    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    _managedObjectContext.persistentStoreCoordinator = coordinator;
+    
+    return _managedObjectContext;
+}
+
 
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
     NSLog(@"%s", __func__);
-    NSManagedObjectContext *context = self.persistentContainer.viewContext;
-    NSError *error = nil;
-    if ([context hasChanges] && ![context save:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-        abort();
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (!managedObjectContext) {
+        NSError *error = nil;
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate.
+            // You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
     }
 }
 
+
 - (void)deleteStore {
     NSLog(@"%s", __func__);
-    NSPersistentStoreCoordinator *storeCoordinator = self.persistentContainer.persistentStoreCoordinator;
-    NSPersistentStore *store = [storeCoordinator.persistentStores firstObject];
+    NSPersistentStore *store = [self.persistentStoreCoordinator.persistentStores firstObject];
     NSError *error;
-    [storeCoordinator destroyPersistentStoreAtURL:store.URL
-                                         withType:NSSQLiteStoreType
-                                          options:nil
-                                            error:&error];
-    _persistentContainer = nil;
+    [self.persistentStoreCoordinator destroyPersistentStoreAtURL:store.URL
+                                                        withType:NSSQLiteStoreType
+                                                         options:nil
+                                                           error:&error];
+    _persistentStoreCoordinator = nil;
     //ToDo: nillify Singleton correctly
 }
+
 
 #pragma mark - Additional Methods
 
 - (AthleteMO *)currentAthlete {
+    NSLog(@"%s", __func__);
     @synchronized (self) {
         if (!_currentAthlete) {
             NSLog(@"%s - fetching AthleteMO from database", __func__);
@@ -85,5 +156,13 @@
     
     return _currentAthlete;
 }
+
+
+- (NSURL *)applicationDocumentsDirectory {
+    NSLog(@"%s", __func__);
+    // The directory the application uses to store the Core Data store file.
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
 
 @end

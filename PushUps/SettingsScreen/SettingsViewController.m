@@ -5,13 +5,12 @@
 
 static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
-@interface SettingsViewController ()
-
+@interface SettingsViewController (CoreData)
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
 @end
 
 @implementation SettingsViewController
+
 
 #pragma mark - Lifecycle
 
@@ -22,11 +21,13 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     self.managedObjectContext = [DataController sharedInstance].managedObjectContext;
 }
 
+
 #pragma mark - Actions
 - (IBAction)createDefaultDBAction:(UIButton *)sender {
     NSLog(@"%s", __func__);
     [self createDefaultDB];
 }
+
 
 - (IBAction)deleteDBAction:(UIButton *)sender {
     NSLog(@"%s", __func__);
@@ -43,11 +44,16 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 }
 */
 
+
 #pragma mark - Additional Methods
 
 - (void)createDefaultDB {
-    // Creating User
-    AthleteMO __unused *athlete = [[AthleteMO alloc] initWithContext:self.managedObjectContext];
+    // Creating the Athlete User
+    NSManagedObjectContext *context = [DataController sharedInstance].managedObjectContext;
+    NSEntityDescription *athleteEntity = [NSEntityDescription entityForName:@"Athlete"
+                                              inManagedObjectContext:context];
+    AthleteMO __unused *athlete = [[AthleteMO alloc] initWithEntity:athleteEntity
+                                     insertIntoManagedObjectContext:[DataController sharedInstance].managedObjectContext];
     
     // Creating Session->Day->Set
     NSArray *sessionMinValues = @[@0, @6, @11, @21, @26, @31, @36, @41, @46, @51, @56, @61];
@@ -195,12 +201,19 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     [self saveManagedObjecContext];
 }
 
+
 - (SessionMO *)createSessionWithTitle:(NSString *)title minValue:(int32_t)minValue maxValue:(int32_t)maxValue id:(int32_t)objectID {
     SessionMO *newSession = nil;
     if ([self existSessionWithTitle:title]) {
         [self presentAlertErrorWithMessage:[NSString stringWithFormat:@"Session %@ already exist", title]];
     } else {
-        newSession = [[SessionMO alloc] initWithContext:self.managedObjectContext];
+        // Creating new session
+        NSManagedObjectContext *context = [DataController sharedInstance].managedObjectContext;
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Session"
+                                                  inManagedObjectContext:context];
+        newSession = [[SessionMO alloc] initWithEntity:entity
+                        insertIntoManagedObjectContext:[DataController sharedInstance].managedObjectContext];
+        
         newSession.id = objectID;
         newSession.title = title;
         newSession.minValue = minValue;
@@ -209,6 +222,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     
     return newSession;
 }
+
 
 - (NSSet *)createDaysFromDaysArray:(NSArray *)days withDayRelaxIntervalSecondsArray:(NSArray *)dayRelaxIntervalSeconds  dayBreakIntervalDaysArray:(NSArray *)dayBreakIntervalDays {
     NSMutableSet *daysForSession = [[NSMutableSet alloc] init];
@@ -222,14 +236,22 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     return [NSSet setWithSet:daysForSession];
 }
 
+
 - (DayMO *)createDayWithRelaxIntervalSeconds:(int32_t)relaxIntervalSeconds breakIntervalDays:(int32_t)breakIntervalDays id:(int32_t)objectID {
-    DayMO *newDay = [[DayMO alloc] initWithContext:self.managedObjectContext];
+    // Creating Day
+    NSManagedObjectContext *context = [DataController sharedInstance].managedObjectContext;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day"
+                                              inManagedObjectContext:context];
+    DayMO *newDay = [[DayMO alloc] initWithEntity:entity
+                   insertIntoManagedObjectContext:[DataController sharedInstance].managedObjectContext];
+    
     newDay.id = objectID;
     newDay.relaxIntervalSeconds = relaxIntervalSeconds;
     newDay.breakIntervalDays = breakIntervalDays;
     
     return newDay;
 }
+
 
 - (NSSet<SetMO *> *)createSetsFromCountsArray:(NSArray *)counts {
     NSMutableSet *result = [[NSMutableSet alloc] init];
@@ -241,14 +263,22 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     return [NSSet setWithSet:result];
 }
 
+
 - (SetMO *)createSetWithCount:(int32_t)count id:(int32_t)objectID {
-    SetMO *newSet = [[SetMO alloc] initWithContext:self.managedObjectContext];
+    // Creating Set
+    NSManagedObjectContext *context = [DataController sharedInstance].managedObjectContext;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Set"
+                                              inManagedObjectContext:context];
+    SetMO *newSet  = [[SetMO alloc] initWithEntity:entity
+                    insertIntoManagedObjectContext:[DataController sharedInstance].managedObjectContext];
+    
     newSet.id = objectID;
     newSet.completed = NO;
     newSet.count = count;
     
     return newSet;
 }
+
 
 #pragma mark - Supplement methods
 
@@ -259,6 +289,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
         abort();
     }
 }
+
 
 - (BOOL)existSessionWithTitle:(NSString *)title {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]
@@ -271,6 +302,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     return [objects count] > 0;
 }
 
+
 - (void)presentAlertErrorWithMessage:(NSString *)messageText {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
                                                                    message:messageText
@@ -281,5 +313,6 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
 
 @end
