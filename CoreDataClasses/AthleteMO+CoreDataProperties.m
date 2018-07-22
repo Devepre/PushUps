@@ -22,7 +22,7 @@
 @dynamic stillToDo;
 @dynamic totalCount;
 @dynamic totalMax;
-@dynamic completedSessions;
+@dynamic sessionsArray;
 @dynamic currentTrainingSession;
 
 @end

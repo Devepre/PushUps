@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int32_t stillToDo;
 @property (nonatomic) int64_t totalCount;
 @property (nonatomic) int32_t totalMax;
-@property (nullable, nonatomic, retain) NSSet<SessionMO *> *completedSessions;
+@property (nullable, nonatomic, retain) NSSet<SessionMO *> *sessionsArray;
 @property (nullable, nonatomic, retain) SessionMO *currentTrainingSession;
 
 @end
