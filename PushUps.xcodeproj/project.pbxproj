@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		248E5EF92104E79D00E90445 /* AthleteMO+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 248E5EF72104E79D00E90445 /* AthleteMO+CoreDataClass.m */; };
+		248E5EFA2104E79D00E90445 /* AthleteMO+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 248E5EF82104E79D00E90445 /* AthleteMO+CoreDataProperties.m */; };
 		47B179D320BF162A00D5ABAE /* AppDataContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B179D220BF162A00D5ABAE /* AppDataContainer.m */; };
 		CE24FA452084EB1500382ED0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE24FA442084EB1500382ED0 /* AppDelegate.m */; };
 		CE24FA4B2084EB1500382ED0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE24FA492084EB1500382ED0 /* Main.storyboard */; };
@@ -23,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		248E5EF52104E79D00E90445 /* AthleteMO+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AthleteMO+CoreDataProperties.h"; sourceTree = "<group>"; };
+		248E5EF62104E79D00E90445 /* AthleteMO+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AthleteMO+CoreDataClass.h"; sourceTree = "<group>"; };
+		248E5EF72104E79D00E90445 /* AthleteMO+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AthleteMO+CoreDataClass.m"; sourceTree = "<group>"; };
+		248E5EF82104E79D00E90445 /* AthleteMO+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AthleteMO+CoreDataProperties.m"; sourceTree = "<group>"; };
 		47B179D120BF162A00D5ABAE /* AppDataContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDataContainer.h; sourceTree = "<group>"; };
 		47B179D220BF162A00D5ABAE /* AppDataContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDataContainer.m; sourceTree = "<group>"; };
 		CE24FA402084EB1500382ED0 /* PushUps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushUps.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,9 +65,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		248E5EFB2104E7B800E90445 /* CoreDataClasses */ = {
+			isa = PBXGroup;
+			children = (
+				248E5EF52104E79D00E90445 /* AthleteMO+CoreDataProperties.h */,
+				248E5EF62104E79D00E90445 /* AthleteMO+CoreDataClass.h */,
+				248E5EF72104E79D00E90445 /* AthleteMO+CoreDataClass.m */,
+				248E5EF82104E79D00E90445 /* AthleteMO+CoreDataProperties.m */,
+			);
+			path = CoreDataClasses;
+			sourceTree = "<group>";
+		};
 		CE24FA372084EB1500382ED0 = {
 			isa = PBXGroup;
 			children = (
+				248E5EFB2104E7B800E90445 /* CoreDataClasses */,
 				CE24FA422084EB1500382ED0 /* PushUps */,
 				CE24FA412084EB1500382ED0 /* Products */,
 			);
@@ -203,11 +221,13 @@
 				CE24FA562084EB1600382ED0 /* main.m in Sources */,
 				CE89DFE0208A052000C9ADDC /* CounterViewController.m in Sources */,
 				CE24FA69208643F200382ED0 /* SettingsViewController.m in Sources */,
+				248E5EF92104E79D00E90445 /* AthleteMO+CoreDataClass.m in Sources */,
 				CE24FA6D2086467800382ED0 /* DataController.m in Sources */,
 				CE89DFDD2088960D00C9ADDC /* MaxTryViewController.m in Sources */,
 				47B179D320BF162A00D5ABAE /* AppDataContainer.m in Sources */,
 				CE24FA622085EDB800382ED0 /* TrainingViewController.m in Sources */,
 				CE24FA452084EB1500382ED0 /* AppDelegate.m in Sources */,
+				248E5EFA2104E79D00E90445 /* AthleteMO+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,6 +2,7 @@
 #import "DataController.h"
 #import "PushUps+CoreDataModel.h"
 #import "AppDataContainer.h"
+#import "AthleteMO+CoreDataProperties.h"
 
 static CGFloat const UITableViewEdgeInsetTop = 20.f;
 static CGFloat const cheatSeconds = 1.14f;

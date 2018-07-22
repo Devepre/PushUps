@@ -1,7 +1,9 @@
 #import "SettingsViewController.h"
 #import "DataController.h"
-#import <CoreData/CoreData.h>
 #import "PushUps+CoreDataModel.h"
+#import "AthleteMO+CoreDataProperties.h"
+
+@import CoreData;
 
 static CGFloat const UITableViewEdgeInsetTop = 20.f;
 

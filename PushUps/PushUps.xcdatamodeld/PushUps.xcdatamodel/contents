@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14270.9" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <entity name="Athlete" representedClassName="AthleteMO" syncable="YES" codeGenerationType="class">
+    <entity name="Athlete" representedClassName="AthleteMO" syncable="YES">
         <attribute name="currentMax" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="currentSessionCompletion" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="estimatedFinishDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -37,8 +37,8 @@
         <relationship name="belongsToDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="setArray" inverseEntity="Day" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Athlete" positionX="-45" positionY="-98" width="162" height="178"/>
-        <element name="Day" positionX="-591.31640625" positionY="-15.75" width="162" height="150"/>
+        <element name="Athlete" positionX="-45" positionY="-98" width="162" height="180"/>
+        <element name="Day" positionX="-603.25" positionY="-16.65234375" width="162" height="150"/>
         <element name="Session" positionX="-270" positionY="-68" width="128" height="165"/>
         <element name="Set" positionX="-334.34375" positionY="216.640625" width="128" height="103"/>
     </elements>

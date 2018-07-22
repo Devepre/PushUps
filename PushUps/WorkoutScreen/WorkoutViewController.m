@@ -118,30 +118,9 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     self.donePushUpsLabel.text = [NSString stringWithFormat:@"%lld", self.currentAthlete.totalCount];
     self.personalRecordPushUpsLabel.text = [NSString stringWithFormat:@"%d", self.currentAthlete.totalMax];
     self.currentMaxPushUpsLabel.text = [NSString stringWithFormat:@"%d", self.currentAthlete.currentMax];
-    
-    // Setting Sets label
-    NSSortDescriptor *descriptor =[[NSSortDescriptor alloc] initWithKey:@"id"
-                                                              ascending:YES];
-    NSArray<SetMO *> *setsArray = [self.currentAthlete.currentTrainingSession.currentDay.setArray
-                                   sortedArrayUsingDescriptors:@[descriptor]];
-    NSMutableString *setsString = [[NSMutableString alloc] init];
-    NSUInteger __block totalNumber = 0;
-    [setsArray enumerateObjectsUsingBlock:^(SetMO * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *stringFormat = (idx < setsArray.count - 1) ? @"%d-" : @"%d+";
-        [setsString appendFormat:stringFormat, obj.count];
-        totalNumber += obj.count;
-    }];
-    
-    NSString *setsLabelString = [NSString stringWithFormat:@"%@ [%@]",
-                                 self.currentAthlete.currentTrainingSession.title,
-                                 setsString];
-    if (!self.currentAthlete.currentTrainingSession.title) {
-        setsLabelString = @"Not assigned yet";
-    }
-    self.setsLabel.text = setsLabelString;
-    
+    self.setsLabel.text = self.currentAthlete.setsDescription;
     // Setting Total push-ups for set label
-    NSString *totalNumberString = [NSString stringWithFormat:@"%lu", (unsigned long)totalNumber];
+    NSString *totalNumberString = [NSString stringWithFormat:@"%lu", (unsigned long)self.currentAthlete.setPushupNumber];
     self.totalPushUpsForSetLabel.text = totalNumberString;
 }
 
