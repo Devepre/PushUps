@@ -20,8 +20,9 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 - (void)viewDidLoad {
     NSLog(@"%s", __func__);
     [super viewDidLoad];
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(UITableViewEdgeInsetTop, 0, 0, 0);
+
+    CGFloat tabBarHeight = CGRectGetHeight(self.tabBarController.tabBar.frame);
+    self.tableView.contentInset = UIEdgeInsetsMake(UITableViewEdgeInsetTop, 0, tabBarHeight, 0);
     
     self.managedObjectContext = [DataController sharedInstance].managedObjectContext;
     [self fetchData];
