@@ -5,7 +5,7 @@
 
 static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
-@interface SettingsViewController (CoreData)
+@interface SettingsViewController ()
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @end
 

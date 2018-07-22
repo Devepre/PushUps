@@ -23,13 +23,12 @@
 
 - (void)performDataSavingProcess {
     NSLog(@"%s", __func__);
-    [super performDataSavingProcess];
     
     int32_t currentCount = [self.countLabel.text intValue];
     [self updateTotalMaxWithNewValue:currentCount];
     [self addToTotalCount:currentCount];
     
-    [self saveManagedObjecContext];
+    [super performDataSavingProcess];
 }
 
 @end

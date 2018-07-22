@@ -16,6 +16,7 @@ static CGFloat const cheatSeconds = 1.14f;
 
 @implementation CounterViewController
 
+
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
@@ -41,6 +42,7 @@ static CGFloat const cheatSeconds = 1.14f;
                                                object:nil];
 }
 
+
 #pragma mark - UITableViewDelegate
 // Centering headers
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
@@ -50,14 +52,20 @@ static CGFloat const cheatSeconds = 1.14f;
     }
 }
 
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"%s segue idenitfier: %@", __func__, segue.identifier);
     [AppDataContainer sharedInstance].senderSegueIdentifier = segue.identifier;
+
     [self unsubscribeFromProximity];
+    if ([segue.identifier isEqualToString:@"Cancel"]) {
+        return;
+    }
     [self performDataSavingProcess];
 }
+
 
 #pragma mark - Actions
 
@@ -65,6 +73,7 @@ static CGFloat const cheatSeconds = 1.14f;
     NSLog(@"%s", __func__);
     [self countStepIncrease:self.increase];
 }
+
 
 #pragma mark - Additional Methods
 
@@ -83,6 +92,7 @@ static CGFloat const cheatSeconds = 1.14f;
     }
 }
 
+
 - (void)countStepIncrease:(BOOL)increase {
     NSLog(@"%s", __func__);
     NSInteger integerValue = [self.countLabel.text integerValue];
@@ -100,6 +110,7 @@ static CGFloat const cheatSeconds = 1.14f;
     UIDevice.currentDevice.proximityMonitoringEnabled = NO;
 }
 
+
 #pragma mark - Supplement methods
 
 - (BOOL)updateTotalMaxWithNewValue:(int32_t)newMax {
@@ -116,6 +127,7 @@ static CGFloat const cheatSeconds = 1.14f;
     return result;
 }
 
+
 - (void)addToTotalCount:(int32_t)count {
     NSLog(@"%s", __func__);
     int64_t totalCount = [DataController sharedInstance].currentAthlete.totalCount;
@@ -123,19 +135,13 @@ static CGFloat const cheatSeconds = 1.14f;
     [DataController sharedInstance].currentAthlete.totalCount = totalCount;
 }
 
-- (void)saveManagedObjecContext {
-    NSLog(@"%s", __func__);
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-        abort();
-    }
-}
 
 // Method to override
 - (void)performDataSavingProcess {
     NSLog(@"%s", __func__);
-    ;
+    
+    // Save context
+    [[DataController sharedInstance] saveContext];
 }
 
 @end

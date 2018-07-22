@@ -9,7 +9,6 @@
 - (void)unsubscribeFromProximity;
 - (BOOL)updateTotalMaxWithNewValue:(int32_t)newMax;
 - (void)addToTotalCount:(int32_t)count;
-- (void)saveManagedObjecContext;
 - (void)performDataSavingProcess;
 
 @end
