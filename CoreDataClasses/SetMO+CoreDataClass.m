@@ -42,4 +42,11 @@
     return [set anyObject];
 }
 
+
+- (BOOL)isLastInDay {
+    BOOL result = (self.id == [self.belongsToDay.setArray count] - 1);
+    return result;
+}
+
+
 @end

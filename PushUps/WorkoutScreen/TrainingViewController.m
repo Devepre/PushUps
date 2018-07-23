@@ -37,6 +37,7 @@
     // Core Data
     self.currentAthlete = [DataController sharedInstance].currentAthlete;
     self.currentSession = self.currentAthlete.currentTrainingSession;
+    self.currentDay = self.currentSession.currentDay;
     
     // Inputs
     self.inputSession = self.currentAthlete.currentTrainingSession;
@@ -68,6 +69,11 @@
     NSInteger integerValue = [self.countLabel.text integerValue];
     
     integerValue+= increase ? 1 : -1;
+
+    if (integerValue == 0 && [self.currentDay.currentSet isLastInDay]) {
+        integerValue = self.currentDay.currentSet.count;
+        self.increase = YES;
+    }
     
     if (integerValue == 0) {
         [self stopCounting];
@@ -133,7 +139,7 @@
 - (void)performDataSavingProcess {
     NSLog(@"%s", __func__);
     
-    if ([self.inputDay isEqual:self.currentAthlete.currentTrainingSession.currentDay]) {
+    if (!self.increase && [self.inputDay isEqual:self.currentAthlete.currentTrainingSession.currentDay]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Workout isn't completed"
                                                                        message:@"You will need to repeat it"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
