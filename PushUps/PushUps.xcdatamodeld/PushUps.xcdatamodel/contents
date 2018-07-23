@@ -6,6 +6,7 @@
         <attribute name="estimatedFinishDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="maxPerSession" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="maxPower" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="needMaxTest" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="stillToDo" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalMax" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -40,7 +41,7 @@
         <relationship name="belongsToDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="setArray" inverseEntity="Day" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Athlete" positionX="-33.19921875" positionY="-94.0859375" width="162" height="195"/>
+        <element name="Athlete" positionX="-33.19921875" positionY="-94.0859375" width="162" height="210"/>
         <element name="Day" positionX="-603.25" positionY="-16.65234375" width="162" height="165"/>
         <element name="Session" positionX="-270" positionY="-68" width="128" height="180"/>
         <element name="Set" positionX="-334.34375" positionY="216.640625" width="128" height="105"/>

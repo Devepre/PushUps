@@ -11,5 +11,6 @@
 - (void)addToTotalCount:(int32_t)count;
 - (void)performDataSavingProcess;
 - (void)stopCounting;
+- (void)cancelSession;
 
 @end

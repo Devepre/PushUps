@@ -1,5 +1,8 @@
 #import "MaxTryViewController.h"
 
+#import "DataController.h"
+#import "AthleteMO+CoreDataProperties.h"
+
 @interface MaxTryViewController ()
 
 @end
@@ -27,6 +30,7 @@
     int32_t currentCount = [self.countLabel.text intValue];
     [self updateTotalMaxWithNewValue:currentCount];
     [self addToTotalCount:currentCount];
+    [DataController sharedInstance].currentAthlete.needMaxTest = NO;
     
     [super performDataSavingProcess];
 }

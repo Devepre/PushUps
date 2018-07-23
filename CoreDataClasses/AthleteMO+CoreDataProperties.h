@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<AthleteMO *> *)fetchRequest;
 
+@property (nonatomic) BOOL needMaxTest;
 @property (nonatomic) BOOL maxPower;
 @property (nonatomic) int32_t currentMax;
 @property (nonatomic) float currentSessionCompletion;

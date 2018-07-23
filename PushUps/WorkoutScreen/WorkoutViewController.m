@@ -30,14 +30,33 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     
     self.managedObjectContext = [DataController sharedInstance].managedObjectContext;
     [self fetchData];
-    [self fillLabels];
     [self findSessionForMaxPushUps:self.currentAthlete.currentMax];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self updateUI];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    if (self.currentAthlete.needMaxTest) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Test workout"
+                                                                       message:@"Need to pass exam"
+                                                                preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Let's do it!"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                       [self performSegueWithIdentifier:@"showMaxTryScene"
+                                                                                 sender:self];
+                                                   }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Not now"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:nil];
+        [alert addAction:ok];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 
@@ -91,7 +110,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
                                         
                                         // Save context
                                         [[DataController sharedInstance] saveContext];
-                                        [self fillLabels];
+                                        [self updateUI];
                                     }];
     UIAlertAction *cancelAction = [UIAlertAction
                                    actionWithTitle:@"Cancel"
@@ -113,7 +132,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 }
 
 
-- (void)fillLabels {
+- (void)updateUI {
     NSLog(@"%s", __func__);
     self.donePushUpsLabel.text = [NSString stringWithFormat:@"%lld", self.currentAthlete.totalCount];
     self.personalRecordPushUpsLabel.text = [NSString stringWithFormat:@"%d", self.currentAthlete.totalMax];

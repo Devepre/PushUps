@@ -61,6 +61,7 @@ static CGFloat const cheatSeconds = 1.14f;
 
     [self unsubscribeFromProximity];
     if ([segue.identifier isEqualToString:@"Cancel"]) {
+        [self cancelSession];
         return;
     }
     [self performDataSavingProcess];
@@ -96,19 +97,12 @@ static CGFloat const cheatSeconds = 1.14f;
 - (void)countStepIncrease:(BOOL)increase {
     NSLog(@"%s", __func__);
     NSInteger integerValue = [self.countLabel.text integerValue];
-
-    if (increase) {
-        ++integerValue;
-    } else if (integerValue > 1) {
-        --integerValue;
-    } else {
-        self.countLabel.text = [NSString stringWithFormat:@"%ld", (long)integerValue];
-        [self stopCounting];
-    }
-
-    self.repetitions++;
+    integerValue+= increase ? 1 : -1;
     self.countLabel.text = [NSString stringWithFormat:@"%ld", (long)integerValue];
+    
+    self.repetitions++;
 }
+
 
 - (void)unsubscribeFromProximity {
     NSLog(@"%s", __func__);
@@ -148,6 +142,12 @@ static CGFloat const cheatSeconds = 1.14f;
     // TODO: make sound
     
     [self presentAlertErrorWithMessage:@"Enough!"];
+}
+
+
+// To override
+- (void)cancelSession {
+    
 }
 
 

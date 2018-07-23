@@ -15,6 +15,7 @@
 	return [NSFetchRequest fetchRequestWithEntityName:@"Athlete"];
 }
 
+@dynamic needMaxTest;
 @dynamic maxPower;
 @dynamic currentMax;
 @dynamic currentSessionCompletion;
