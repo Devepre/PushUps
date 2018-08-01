@@ -137,8 +137,14 @@ typedef NS_ENUM(NSUInteger, KSVErrorCode) {
                                                         withType:NSSQLiteStoreType
                                                          options:nil
                                                            error:&error];
+
+    // Nillify Singleton data dependencies
     _persistentStoreCoordinator = nil;
-    //ToDo: nillify Singleton correctly
+    _managedObjectModel = nil;
+    _persistentStoreCoordinator = nil;
+    _managedObjectContext = nil;
+    // Initialize CoreData objects
+    [self initializeManagedObjectModel];
 }
 
 
