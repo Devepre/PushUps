@@ -8,8 +8,6 @@
 
 @interface TrainingViewController () <UITableViewDataSource>
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
 @property (weak, nonatomic) IBOutlet UILabel *detail1;
 @property (weak, nonatomic) IBOutlet UILabel *trainingPlanNLabel;
 

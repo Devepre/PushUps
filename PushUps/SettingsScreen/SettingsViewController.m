@@ -10,7 +10,7 @@
 static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 @interface SettingsViewController ()
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end
 
 @implementation SettingsViewController
@@ -22,7 +22,6 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     [super viewDidLoad];
     
     self.tableView.contentInset = UIEdgeInsetsMake(UITableViewEdgeInsetTop, 0, 0, 0);
-    self.managedObjectContext = [DataController sharedInstance].managedObjectContext;
 }
 
 
@@ -53,9 +52,8 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 - (void)createDefaultDB {
     // Creating the Athlete User
-    NSManagedObjectContext *context = [DataController sharedInstance].managedObjectContext;
     NSEntityDescription *athleteEntity = [NSEntityDescription entityForName:@"Athlete"
-                                              inManagedObjectContext:context];
+                                                     inManagedObjectContext:[DataController sharedInstance].managedObjectContext];
     AthleteMO __unused *athlete = [[AthleteMO alloc] initWithEntity:athleteEntity
                                      insertIntoManagedObjectContext:[DataController sharedInstance].managedObjectContext];
     
@@ -214,9 +212,8 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
         [self presentAlertErrorWithMessage:[NSString stringWithFormat:@"Session %@ already exist", title]];
     } else {
         // Creating new session
-        NSManagedObjectContext *context = [DataController sharedInstance].managedObjectContext;
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Session"
-                                                  inManagedObjectContext:context];
+                                                  inManagedObjectContext:[DataController sharedInstance].managedObjectContext];
         newSession = [[SessionMO alloc] initWithEntity:entity
                         insertIntoManagedObjectContext:[DataController sharedInstance].managedObjectContext];
         
@@ -272,9 +269,8 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 - (SetMO *)createSetWithCount:(int32_t)count id:(int32_t)objectID {
     // Creating Set
-    NSManagedObjectContext *context = [DataController sharedInstance].managedObjectContext;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Set"
-                                              inManagedObjectContext:context];
+                                              inManagedObjectContext:[DataController sharedInstance].managedObjectContext];
     SetMO *newSet  = [[SetMO alloc] initWithEntity:entity
                     insertIntoManagedObjectContext:[DataController sharedInstance].managedObjectContext];
     
@@ -290,7 +286,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 - (void)saveManagedObjecContext {
     NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
+    if (![[DataController sharedInstance].managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, error.userInfo);
         abort();
     }
@@ -303,8 +299,8 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title = %@", title];
     fetchRequest.predicate = predicate;
     NSError *requestError = nil;
-    NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest
-                                                                error:&requestError];
+    NSArray *objects = [[DataController sharedInstance].managedObjectContext executeFetchRequest:fetchRequest
+                                                                                           error:&requestError];
     return [objects count] > 0;
 }
 

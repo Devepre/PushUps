@@ -10,9 +10,6 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 @interface WorkoutViewController ()
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) AthleteMO *currentAthlete;
-
 @end
 
 @implementation WorkoutViewController
@@ -28,9 +25,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     CGFloat tabBarHeight = CGRectGetHeight(self.tabBarController.tabBar.frame);
     self.tableView.contentInset = UIEdgeInsetsMake(UITableViewEdgeInsetTop, 0, tabBarHeight, 0);
     
-    self.managedObjectContext = [DataController sharedInstance].managedObjectContext;
-    [self fetchData];
-    [self findSessionForMaxPushUps:self.currentAthlete.currentMax];
+    [self findSessionForMaxPushUps:[DataController sharedInstance].currentAthlete.currentMax];
 }
 
 
@@ -40,7 +35,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (self.currentAthlete.needMaxTest) {
+    if ([DataController sharedInstance].currentAthlete.needMaxTest) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Test workout"
                                                                        message:@"Need to pass exam"
                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
@@ -71,16 +66,6 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma mark - Alerts
 
 - (void)showAlertForMaxPushUps:(int32_t)maxPushUps session:(SessionMO *)session {
@@ -96,17 +81,17 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
                                     handler:^(UIAlertAction * _Nonnull action) {
                                         NSLog(@"Ok");
                                         // Setting current Session
-                                        self.currentAthlete.currentTrainingSession = session;
+                                        [DataController sharedInstance].currentAthlete.currentTrainingSession = session;
                                         
                                         // Setting first Day of the Session
                                         NSSortDescriptor *descriptor =[[NSSortDescriptor alloc] initWithKey:@"id"
                                                                                                   ascending:YES];
                                         NSArray<DayMO *> *daysArray = [session.daysArray sortedArrayUsingDescriptors:@[descriptor]];
-                                        self.currentAthlete.currentTrainingSession.currentDay = [daysArray firstObject];
+                                        [DataController sharedInstance].currentAthlete.currentTrainingSession.currentDay = [daysArray firstObject];
                                         
                                         // Setting first Set of the Day
                                         NSArray<SetMO *> *setsArray = [[daysArray firstObject].setArray sortedArrayUsingDescriptors:@[descriptor]];
-                                        self.currentAthlete.currentTrainingSession.currentDay.currentSet = [setsArray firstObject];
+                                        [DataController sharedInstance].currentAthlete.currentTrainingSession.currentDay.currentSet = [setsArray firstObject];
                                         
                                         // Save context
                                         [[DataController sharedInstance] saveContext];
@@ -126,20 +111,14 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
 
 #pragma mark - Additional Methods
 
-- (void)fetchData {
-    NSLog(@"%s", __func__);
-    self.currentAthlete = [DataController sharedInstance].currentAthlete;
-}
-
-
 - (void)updateUI {
     NSLog(@"%s", __func__);
-    self.donePushUpsLabel.text = [NSString stringWithFormat:@"%lld", self.currentAthlete.totalCount];
-    self.personalRecordPushUpsLabel.text = [NSString stringWithFormat:@"%d", self.currentAthlete.totalMax];
-    self.currentMaxPushUpsLabel.text = [NSString stringWithFormat:@"%d", self.currentAthlete.currentMax];
-    self.setsLabel.text = self.currentAthlete.setsDescription;
+    self.donePushUpsLabel.text = [NSString stringWithFormat:@"%lld", [DataController sharedInstance].currentAthlete.totalCount];
+    self.personalRecordPushUpsLabel.text = [NSString stringWithFormat:@"%d", [DataController sharedInstance].currentAthlete.totalMax];
+    self.currentMaxPushUpsLabel.text = [NSString stringWithFormat:@"%d", [DataController sharedInstance].currentAthlete.currentMax];
+    self.setsLabel.text = [DataController sharedInstance].currentAthlete.setsDescription;
     // Setting Total push-ups for set label
-    NSString *totalNumberString = [NSString stringWithFormat:@"%lu", (unsigned long)self.currentAthlete.setPushupNumber];
+    NSString *totalNumberString = [NSString stringWithFormat:@"%lu", (unsigned long)[DataController sharedInstance].currentAthlete.setPushupNumber];
     self.totalPushUpsForSetLabel.text = totalNumberString;
 }
 
@@ -151,7 +130,7 @@ static CGFloat const UITableViewEdgeInsetTop = 20.f;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%d BETWEEN {minValue, maxValue}", maxPushUps];
     fetchRequest.predicate = predicate;
     NSError *requestError = nil;
-    NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest
+    NSArray *objects = [[DataController sharedInstance].managedObjectContext executeFetchRequest:fetchRequest
                                                                 error:&requestError];
     SessionMO *session = [objects firstObject];
     NSLog(@"Corresponding session is: %@ for max: %d", session.title, maxPushUps);

@@ -139,6 +139,7 @@ typedef NS_ENUM(NSUInteger, KSVErrorCode) {
                                                            error:&error];
 
     // Nillify Singleton data dependencies
+    _currentAthlete = nil;
     _persistentStoreCoordinator = nil;
     _managedObjectModel = nil;
     _persistentStoreCoordinator = nil;

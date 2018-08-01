@@ -10,7 +10,6 @@ static CGFloat const cheatSeconds = 1.14f;
 
 @property (strong, nonatomic) NSDate                 *timeShot;
 @property (assign, nonatomic) NSTimeInterval          timeInterval;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -30,8 +29,6 @@ static CGFloat const cheatSeconds = 1.14f;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(didTapLabelWithGesture:)];
     [self.countLabel addGestureRecognizer:tapGesture];
-    
-    self.managedObjectContext = [DataController sharedInstance].managedObjectContext;
     
     self.timeShot = [NSDate dateWithTimeIntervalSince1970:0];
     
