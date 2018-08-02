@@ -101,7 +101,6 @@
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok"
                                                      style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * _Nonnull action) {
-                                                       self.currentAthlete.needMaxTest = YES;
                                                        [self performDataSavingProcess];
                                                        [self dismissViewControllerAnimated:YES completion:nil];
                                                    }];
@@ -135,7 +134,10 @@
                                                    }];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
-    } else {
+    }
+    
+    // Step to another session requires Max PU Test
+    if (![self.inputSession isEqual:self.currentAthlete.currentTrainingSession]) {
         self.currentAthlete.needMaxTest = YES;
     }
     
