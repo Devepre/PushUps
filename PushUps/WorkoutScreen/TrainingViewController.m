@@ -113,20 +113,6 @@
 }
 
 
-- (void)presentAlertWithMessage:(NSString *)messageText {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:messageText
-                                                                   message:nil
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"I'm ready"
-                                                 style:UIAlertActionStyleDefault
-                                               handler:^(UIAlertAction * _Nonnull action) {
-                                                   [self updateUI];
-                                               }];
-    [alert addAction:ok];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-
 - (void)cancelSession {
     self.currentAthlete.currentTrainingSession = self.inputSession;
     self.currentAthlete.currentTrainingSession.currentDay = self.inputDay;
@@ -157,6 +143,30 @@
     [self addToTotalCount:currentCount];
     
     [super performDataSavingProcess];
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender  {
+    [super prepareForSegue:segue sender:sender];
+    if (self.increase && [segue.identifier isEqualToString:@"Save"]) {
+        [self stopCounting];
+    }
+}
+
+
+#pragma mark - Alerts
+
+- (void)presentAlertWithMessage:(NSString *)messageText {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:messageText
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"I'm ready"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * _Nonnull action) {
+                                                   [self updateUI];
+                                               }];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
