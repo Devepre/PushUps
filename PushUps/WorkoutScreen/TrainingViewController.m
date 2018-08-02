@@ -101,7 +101,6 @@
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok"
                                                      style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * _Nonnull action) {
-                                                       [self performDataSavingProcess];
                                                        [self dismissViewControllerAnimated:YES completion:nil];
                                                    }];
         [alert addAction:ok];
