@@ -680,14 +680,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Second view" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDE-tH-6DQ">
-                                                    <rect key="frame" x="60" y="11" width="98" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second view" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDE-tH-6DQ">
+                                                    <rect key="frame" x="20" y="11" width="374" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nDE-tH-6DQ" secondAttribute="bottom" id="EBa-zE-KME"/>
+                                                <constraint firstItem="nDE-tH-6DQ" firstAttribute="leading" secondItem="lV9-01-5FE" secondAttribute="leadingMargin" id="EqW-V0-Vpe"/>
+                                                <constraint firstItem="nDE-tH-6DQ" firstAttribute="top" secondItem="lV9-01-5FE" secondAttribute="topMargin" id="Jdc-iv-AXU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="nDE-tH-6DQ" secondAttribute="trailing" id="axs-Kq-b2B"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
